@@ -202,3 +202,13 @@ def analyze_sentiment(text):
     score = sum(1 for word in words if word in pos_words) - sum(1 for word in words if word in neg_words)
     
     return 'positive' if score > 0 else 'negative' if score < 0 else 'neutral'
+
+
+# AI Improvement (2026-02-16)
+# Add a helper function to sanitize subreddit name inputs
+def sanitize_subreddit(name):
+    """Standardize subreddit input (handles 'r/python', URLs, etc.)"""
+    if not name:
+        return ''
+    return name.strip().rstrip('/').split('/')[-1]
+
