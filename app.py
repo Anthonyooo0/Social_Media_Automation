@@ -212,3 +212,11 @@ def sanitize_subreddit(name):
         return ''
     return name.strip().rstrip('/').split('/')[-1]
 
+
+
+# AI Improvement (2026-02-16)
+# Expand the database schema to include a sentiment_score column for persisting analysis results
+                  score INTEGER,
+                  num_comments INTEGER,
+                  created_utc INTEGER,
+                  sentiment_score REAL)''')
