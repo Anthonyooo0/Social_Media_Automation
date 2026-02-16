@@ -186,3 +186,19 @@ def clean_text(text):
     # Remove punctuation and numbers, keep only letters and spaces
     text = re.sub(r'[^a-zA-Z\s]', '', text)
     return text.lower().strip()
+
+
+# AI Improvement (2026-02-16)
+# Add a rule-based sentiment analysis helper function
+def analyze_sentiment(text):
+    """
+    Perform basic sentiment analysis on a string.
+    Returns a string: 'positive', 'negative', or 'neutral'
+    """
+    pos_words = {'good', 'great', 'excellent', 'amazing', 'cool', 'love', 'best', 'awesome', 'helpful', 'interesting'}
+    neg_words = {'bad', 'terrible', 'awful', 'worst', 'hate', 'boring', 'useless', 'wrong', 'broken', 'issue'}
+    
+    words = re.findall(r'\w+', text.lower())
+    score = sum(1 for word in words if word in pos_words) - sum(1 for word in words if word in neg_words)
+    
+    return 'positive' if score > 0 else 'negative' if score < 0 else 'neutral'
