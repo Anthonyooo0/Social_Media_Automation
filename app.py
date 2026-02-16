@@ -220,3 +220,12 @@ def sanitize_subreddit(name):
                   num_comments INTEGER,
                   created_utc INTEGER,
                   sentiment_score REAL)''')
+
+
+# AI Improvement (2026-02-16)
+# Add a helper function to calculate 'post velocity' (score per hour)
+def calculate_post_velocity(score, created_utc):
+    """Calculates score accumulation per hour to identify trending content regardless of age"""
+    age_in_hours = (datetime.now().timestamp() - created_utc) / 3600
+    return round(score / max(age_in_hours, 0.1), 2)
+
