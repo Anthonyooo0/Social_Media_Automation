@@ -173,3 +173,16 @@ if __name__ == '__main__':
     print("🚀 Social Media Analytics Server Starting...")
     print("📊 Navigate to: http://localhost:5000")
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+
+# AI Improvement (2026-02-16)
+# Add a text cleaning helper function for word frequency analysis
+def clean_text(text):
+    """Clean text by removing URLs, punctuation, and converting to lowercase"""
+    if not text:
+        return ""
+    # Remove URLs
+    text = re.sub(r'http\S+', '', text)
+    # Remove punctuation and numbers, keep only letters and spaces
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    return text.lower().strip()
