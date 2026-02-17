@@ -229,3 +229,11 @@ def calculate_post_velocity(score, created_utc):
     age_in_hours = (datetime.now().timestamp() - created_utc) / 3600
     return round(score / max(age_in_hours, 0.1), 2)
 
+
+
+# AI Improvement (2026-02-17)
+# Add a stop-word filtering helper to improve the quality of word frequency analysis
+def filter_stop_words(words):
+    """Remove common English stop words to ensure word frequency analysis highlights meaningful terms"""
+    stop_words = {'the', 'and', 'for', 'this', 'that', 'with', 'from', 'was', 'are', 'they', 'their', 'have', 'has', 'not', 'but', 'what', 'who', 'how', 'where', 'your', 'about', 'will', 'just', 'can'}
+    return [w for w in words if w.lower() not in stop_words and len(w) > 2]

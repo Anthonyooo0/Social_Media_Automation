@@ -23,8 +23,14 @@
       "description": "Expand the database schema to include a sentiment_score column for persisting analysis results",
       "type": "feature",
       "file": "app.py"
+    },
+    {
+      "date": "2026-02-16T12:12:48.015871",
+      "description": "Add a helper function to calculate 'post velocity' (score per hour)",
+      "type": "feature",
+      "file": "app.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-16T12:12:02.267407"
+  "last_run": "2026-02-16T12:12:48.015887"
 }
