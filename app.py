@@ -301,3 +301,16 @@ def get_filtered_keywords(titles, limit=20):
         words = re.findall(r'\\w+', title.lower())
         all_words.extend([w for w in words if w not in stop_words and len(w) > 2])
     return Counter(all_words).most_common(limit)
+
+
+# AI Improvement (2026-02-17)
+# Add a helper function to calculate the Jaccard similarity between two sets of keywords for subreddit comparison.
+def calculate_subreddit_similarity(keywords_one, keywords_two):
+    """
+    Computes the similarity score between two subreddits based on their top keywords.
+    Uses Jaccard Similarity: (Intersection / Union)
+    """
+    set1, set2 = set(keywords_one), set(keywords_two)
+    if not set1 or not set2:
+        return 0.0
+    return round(len(set1 & set2) / len(set1 | set2), 4)
