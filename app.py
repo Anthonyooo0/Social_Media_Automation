@@ -258,3 +258,11 @@ def analyze_sentiment(text):
     neg = {'downvote', 'bad', 'terrible', 'awful', 'boring', 'worst', 'hate', 'annoying', 'useless'}
     words = re.findall(r'\w+', text.lower())
     return sum(1 for w in words if w in pos) - sum(1 for w in words if w in neg)
+
+
+# AI Improvement (2026-02-17)
+# Add a helper function to identify the most frequent contributors in a set of posts
+def get_top_contributors(posts, limit=5):
+    """Identify the most active authors in the provided dataset"""
+    authors = [p.get('author') for p in posts if p.get('author')]
+    return Counter(authors).most_common(limit)
