@@ -59,8 +59,14 @@
       "description": "Add a helper function to calculate the engagement ratio (comments per upvote).",
       "type": "feature",
       "file": "app.py"
+    },
+    {
+      "date": "2026-02-17T15:39:33.408555",
+      "description": "Add a trending score helper function to calculate post momentum using time decay",
+      "type": "feature",
+      "file": "app.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-17T15:38:58.082738"
+  "last_run": "2026-02-17T15:39:33.408621"
 }

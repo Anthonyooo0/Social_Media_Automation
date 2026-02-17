@@ -288,3 +288,16 @@ def calculate_trending_score(score, num_comments, created_utc):
     age_hours = max(0.1, (datetime.now().timestamp() - created_utc) / 3600)
     # Weighting: Score + (Comments * 2) / (Age + 2)^1.5
     return round((score + (num_comments * 2)) / (age_hours + 2)**1.5, 3)
+
+
+# AI Improvement (2026-02-17)
+# Add a helper function to extract meaningful keywords by filtering out common stop words.
+def get_filtered_keywords(titles, limit=20):
+    """Extracts significant keywords from titles by filtering out common stop words."""
+    stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'to', 'of', 'in', 'for', 'with', 'on', 'at', 'by', 'from', 'up', 'about', 'into', 'over', 'after', 'that', 'this', 'who', 'what', 'where', 'when', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 'can', 'will', 'just', 'should', 'now', 'my', 'your', 'his', 'her', 'its', 'our', 'their', 'me', 'him', 'them', 'us'}
+    all_words = []
+    for title in titles:
+        if not title: continue
+        words = re.findall(r'\\w+', title.lower())
+        all_words.extend([w for w in words if w not in stop_words and len(w) > 2])
+    return Counter(all_words).most_common(limit)
