@@ -237,3 +237,14 @@ def filter_stop_words(words):
     """Remove common English stop words to ensure word frequency analysis highlights meaningful terms"""
     stop_words = {'the', 'and', 'for', 'this', 'that', 'with', 'from', 'was', 'are', 'they', 'their', 'have', 'has', 'not', 'but', 'what', 'who', 'how', 'where', 'your', 'about', 'will', 'just', 'can'}
     return [w for w in words if w.lower() not in stop_words and len(w) > 2]
+
+
+# AI Improvement (2026-02-17)
+# Add a helper function to identify the peak posting hour from a collection of posts.
+def get_peak_activity_hour(posts):
+    """Identify the hour of the day with the highest frequency of posts"""
+    if not posts:
+        return None
+    hours = [datetime.fromtimestamp(p.get('created_utc', 0)).hour for p in posts]
+    most_common = Counter(hours).most_common(1)
+    return most_common[0][0] if most_common else None
