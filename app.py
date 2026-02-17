@@ -248,3 +248,13 @@ def get_peak_activity_hour(posts):
     hours = [datetime.fromtimestamp(p.get('created_utc', 0)).hour for p in posts]
     most_common = Counter(hours).most_common(1)
     return most_common[0][0] if most_common else None
+
+
+# AI Improvement (2026-02-17)
+# Add a basic keyword-based sentiment analysis helper function to process post titles
+def analyze_sentiment(text):
+    """Perform basic keyword-based sentiment analysis on a string."""
+    pos = {'upvote', 'good', 'great', 'awesome', 'interesting', 'cool', 'best', 'love', 'helpful'}
+    neg = {'downvote', 'bad', 'terrible', 'awful', 'boring', 'worst', 'hate', 'annoying', 'useless'}
+    words = re.findall(r'\w+', text.lower())
+    return sum(1 for w in words if w in pos) - sum(1 for w in words if w in neg)
