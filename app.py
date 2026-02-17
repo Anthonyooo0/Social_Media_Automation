@@ -276,3 +276,15 @@ def calculate_engagement_ratio(score, num_comments):
     High ratios often indicate controversial or highly engaging discussion-based content.
     """
     return round(num_comments / max(score, 1), 4)
+
+
+# AI Improvement (2026-02-17)
+# Add a trending score helper function to calculate post momentum using time decay
+def calculate_trending_score(score, num_comments, created_utc):
+    """
+    Calculates a trending score using a gravity-based decay formula.
+    Higher values indicate content gaining traction quickly relative to its age.
+    """
+    age_hours = max(0.1, (datetime.now().timestamp() - created_utc) / 3600)
+    # Weighting: Score + (Comments * 2) / (Age + 2)^1.5
+    return round((score + (num_comments * 2)) / (age_hours + 2)**1.5, 3)
