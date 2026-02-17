@@ -266,3 +266,13 @@ def get_top_contributors(posts, limit=5):
     """Identify the most active authors in the provided dataset"""
     authors = [p.get('author') for p in posts if p.get('author')]
     return Counter(authors).most_common(limit)
+
+
+# AI Improvement (2026-02-17)
+# Add a helper function to calculate the engagement ratio (comments per upvote).
+def calculate_engagement_ratio(score, num_comments):
+    """
+    Calculates the ratio of comments to upvotes.
+    High ratios often indicate controversial or highly engaging discussion-based content.
+    """
+    return round(num_comments / max(score, 1), 4)
