@@ -352,3 +352,16 @@ def calculate_post_velocity(score, created_utc):
     # Ensure age is at least 6 minutes to avoid division by zero or extreme skewing for very new posts
     age_seconds = max(time.time() - created_utc, 360)
     return round(score / (age_seconds / 3600), 2)
+
+
+# AI Improvement (2026-02-18)
+# Add a helper function to filter out common English stop words for cleaner word frequency analysis.
+def clean_text_for_analysis(text_list):
+    """Filters out common stop words and non-alphanumeric tokens from a list of words."""
+    stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'to', 'for', 'in', 'on', 'at', 'by', 'with', 'from', 'up', 'about', 'into', 'over', 'after', 'this', 'that', 'it', 'they', 'be', 'of', 'for', 'my', 'how', 'can', 'you', 'if'}
+    cleaned_list = []
+    for word in text_list:
+        clean_word = word.lower().strip('.,!?()[]:;"\'')
+        if clean_word and clean_word not in stop_words and len(clean_word) > 2:
+            cleaned_list.append(clean_word)
+    return cleaned_list
