@@ -314,3 +314,14 @@ def calculate_subreddit_similarity(keywords_one, keywords_two):
     if not set1 or not set2:
         return 0.0
     return round(len(set1 & set2) / len(set1 | set2), 4)
+
+
+# AI Improvement (2026-02-18)
+# Add a helper function to perform basic lexicon-based sentiment analysis on post titles.
+def get_sentiment_label(text):
+    """Categorizes text as Positive, Negative, or Neutral based on a predefined word list."""
+    pos_words = {'excellent', 'great', 'good', 'amazing', 'love', 'best', 'awesome', 'incredible', 'positive', 'win'}
+    neg_words = {'terrible', 'bad', 'awful', 'worst', 'hate', 'poor', 'negative', 'fail', 'disappointing', 'horrible'}
+    tokens = [w.strip('.,!?:;') for w in text.lower().split()]
+    score = sum(1 for word in tokens if word in pos_words) - sum(1 for word in tokens if word in neg_words)
+    return 'Positive' if score > 0 else 'Negative' if score < 0 else 'Neutral'
