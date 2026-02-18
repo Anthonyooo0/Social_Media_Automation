@@ -365,3 +365,21 @@ def clean_text_for_analysis(text_list):
         if clean_word and clean_word not in stop_words and len(clean_word) > 2:
             cleaned_list.append(clean_word)
     return cleaned_list
+
+
+# AI Improvement (2026-02-18)
+# Add a helper function to categorize Reddit posts by media type (Text, Image, Video, Link).
+def analyze_content_types(posts):
+    """Categorizes a list of posts into text, image, video, or external links."""
+    stats = {'text': 0, 'image': 0, 'video': 0, 'link': 0}
+    for post in posts:
+        url = getattr(post, 'url', '').lower()
+        if getattr(post, 'is_self', False):
+            stats['text'] += 1
+        elif any(url.endswith(ext) for ext in ['.jpg', '.png', '.gif', '.jpeg']):
+            stats['image'] += 1
+        elif any(x in url for x in ['v.redd.it', 'youtube.com', 'youtu.be']):
+            stats['video'] += 1
+        else:
+            stats['link'] += 1
+    return stats
