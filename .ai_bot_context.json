@@ -89,8 +89,14 @@
       "description": "Add a helper function to analyze and rank the primary domains (content sources) from a list of post URLs.",
       "type": "feature",
       "file": "analytics_utils.py"
+    },
+    {
+      "date": "2026-02-18T18:41:25.131102",
+      "description": "Add a helper function to calculate the average engagement (score + comments) per hour to determine peak activity times.",
+      "type": "feature",
+      "file": "app.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-18T18:40:59.040516"
+  "last_run": "2026-02-18T18:41:25.131115"
 }

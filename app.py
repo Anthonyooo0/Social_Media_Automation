@@ -339,3 +339,16 @@ def calculate_hourly_engagement(posts):
             hourly_data[hour] = []
         hourly_data[hour].append(engagement)
     return {hour: round(sum(v) / len(v), 2) for hour, v in hourly_data.items()}
+
+
+# AI Improvement (2026-02-18)
+# Add a helper function to calculate post velocity (score per hour) to identify rapidly trending content.
+def calculate_post_velocity(score, created_utc):
+    """
+    Calculates the 'velocity' of a post (score per hour).
+    Helps identify trending content regardless of how long it has been posted.
+    """
+    import time
+    # Ensure age is at least 6 minutes to avoid division by zero or extreme skewing for very new posts
+    age_seconds = max(time.time() - created_utc, 360)
+    return round(score / (age_seconds / 3600), 2)
