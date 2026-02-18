@@ -83,8 +83,14 @@
       "description": "Add a helper function to perform basic lexicon-based sentiment analysis on post titles.",
       "type": "feature",
       "file": "app.py"
+    },
+    {
+      "date": "2026-02-18T18:40:59.040492",
+      "description": "Add a helper function to analyze and rank the primary domains (content sources) from a list of post URLs.",
+      "type": "feature",
+      "file": "analytics_utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-18T18:40:16.327780"
+  "last_run": "2026-02-18T18:40:59.040516"
 }

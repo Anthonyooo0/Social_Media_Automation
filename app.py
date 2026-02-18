@@ -325,3 +325,17 @@ def get_sentiment_label(text):
     tokens = [w.strip('.,!?:;') for w in text.lower().split()]
     score = sum(1 for word in tokens if word in pos_words) - sum(1 for word in tokens if word in neg_words)
     return 'Positive' if score > 0 else 'Negative' if score < 0 else 'Neutral'
+
+
+# AI Improvement (2026-02-18)
+# Add a helper function to calculate the average engagement (score + comments) per hour to determine peak activity times.
+def calculate_hourly_engagement(posts):
+    from datetime import datetime
+    hourly_data = {}
+    for post in posts:
+        hour = datetime.fromtimestamp(post.created_utc).hour
+        engagement = post.score + post.num_comments
+        if hour not in hourly_data:
+            hourly_data[hour] = []
+        hourly_data[hour].append(engagement)
+    return {hour: round(sum(v) / len(v), 2) for hour, v in hourly_data.items()}
