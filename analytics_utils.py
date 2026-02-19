@@ -91,3 +91,26 @@ def get_peak_engagement_hour(hour_score_pairs):
             
     avg_scores = {hour: sum(scores) / len(scores) for hour, scores in hour_metrics.items()}
     return max(avg_scores, key=avg_scores.get)
+
+
+# AI Improvement (2026-02-19)
+# Add a function to categorize URLs into content types like Image, Video, and Discussion.
+
+
+def get_content_type_distribution(urls):
+    """Categorizes a list of URLs into content types (Image, Video, Discussion, Article)."""
+    stats = {"Image": 0, "Video": 0, "Discussion": 0, "Article": 0}
+    img_exts = ('.jpg', '.jpeg', '.png', '.gif', '.webp')
+    vid_domains = ('youtube.com', 'vimeo.com', 'youtu.be', 'v.redd.it')
+    for url in urls:
+        parsed = urlparse(url)
+        path, domain = parsed.path.lower(), parsed.netloc.lower()
+        if path.endswith(img_exts):
+            stats["Image"] += 1
+        elif any(vd in domain for vd in vid_domains):
+            stats["Video"] += 1
+        elif 'reddit.com' in domain and '/comments/' in path:
+            stats["Discussion"] += 1
+        else:
+            stats["Article"] += 1
+    return stats
