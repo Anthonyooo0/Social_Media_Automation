@@ -56,3 +56,19 @@ def get_top_phrases(titles, n=2, limit=10):
         for i in range(len(words) - n + 1):
             phrases.append(" ".join(words[i:i + n]))
     return Counter(phrases).most_common(limit)
+
+
+# AI Improvement (2026-02-19)
+# Add a helper function to calculate a controversy index (comment-to-score ratio) to identify highly debated posts.
+
+
+def calculate_controversy_index(posts):
+    """Identifies controversial posts where the number of comments is high relative to the score."""
+    results = []
+    for post in posts:
+        score = post.get('score', 0)
+        num_comments = post.get('num_comments', 0)
+        # A high ratio of comments to upvotes often indicates a heated discussion or 'ratioing'
+        index = round(num_comments / max(score, 1), 2)
+        results.append({"title": post.get('title', 'Untitled'), "controversy_index": index})
+    return sorted(results, key=lambda x: x['controversy_index'], reverse=True)
