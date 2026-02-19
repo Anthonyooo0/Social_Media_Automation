@@ -29,3 +29,16 @@ def analyze_sentiment(texts):
         else:
             sentiment_counts['neutral'] += 1
     return sentiment_counts
+
+
+# AI Improvement (2026-02-19)
+# Add a helper function to identify the most active authors/contributors from a list of posts.
+
+
+def get_top_contributors(posts, limit=5):
+    """Identifies the most frequent authors in the provided list of posts."""
+    authors = {}
+    for post in posts:
+        author = str(post.get('author', '[deleted]'))
+        authors[author] = authors.get(author, 0) + 1
+    return sorted(authors.items(), key=lambda x: x[1], reverse=True)[:limit]
