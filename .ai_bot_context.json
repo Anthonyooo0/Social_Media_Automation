@@ -131,8 +131,14 @@
       "description": "Add a helper function to extract the most frequent two-word phrases (bigrams) from titles to help identify trending topics.",
       "type": "feature",
       "file": "analytics_utils.py"
+    },
+    {
+      "date": "2026-02-19T10:03:14.364355",
+      "description": "Add a helper function to calculate a controversy index (comment-to-score ratio) to identify highly debated posts.",
+      "type": "feature",
+      "file": "analytics_utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-19T10:02:41.425956"
+  "last_run": "2026-02-19T10:03:14.364368"
 }

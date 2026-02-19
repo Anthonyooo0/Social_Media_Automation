@@ -72,3 +72,22 @@ def calculate_controversy_index(posts):
         index = round(num_comments / max(score, 1), 2)
         results.append({"title": post.get('title', 'Untitled'), "controversy_index": index})
     return sorted(results, key=lambda x: x['controversy_index'], reverse=True)
+
+
+# AI Improvement (2026-02-19)
+# Add a helper function to calculate the hour of the day with the highest average engagement from a list of hour-score pairs.
+
+
+def get_peak_engagement_hour(hour_score_pairs):
+    """Calculates the hour of the day with the highest average engagement from (hour, score) tuples."""
+    hour_metrics = {}
+    for hour, score in hour_score_pairs:
+        if hour not in hour_metrics:
+            hour_metrics[hour] = []
+        hour_metrics[hour].append(score)
+    
+    if not hour_metrics:
+        return None
+            
+    avg_scores = {hour: sum(scores) / len(scores) for hour, scores in hour_metrics.items()}
+    return max(avg_scores, key=avg_scores.get)
