@@ -119,8 +119,14 @@
       "description": "Add a basic sentiment analysis helper to categorize post titles into positive, negative, and neutral sentiments.",
       "type": "feature",
       "file": "analytics_utils.py"
+    },
+    {
+      "date": "2026-02-19T10:01:59.795228",
+      "description": "Add a helper function to identify the most active authors/contributors from a list of posts.",
+      "type": "feature",
+      "file": "analytics_utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-19T10:00:53.887462"
+  "last_run": "2026-02-19T10:01:59.795243"
 }

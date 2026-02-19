@@ -42,3 +42,17 @@ def get_top_contributors(posts, limit=5):
         author = str(post.get('author', '[deleted]'))
         authors[author] = authors.get(author, 0) + 1
     return sorted(authors.items(), key=lambda x: x[1], reverse=True)[:limit]
+
+
+# AI Improvement (2026-02-19)
+# Add a helper function to extract the most frequent two-word phrases (bigrams) from titles to help identify trending topics.
+def get_top_phrases(titles, n=2, limit=10):
+    """Extracts the most frequent n-word phrases (bigrams) from titles to identify trends."""
+    import re
+    from collections import Counter
+    phrases = []
+    for title in titles:
+        words = re.findall(r'\w+', str(title).lower())
+        for i in range(len(words) - n + 1):
+            phrases.append(" ".join(words[i:i + n]))
+    return Counter(phrases).most_common(limit)
