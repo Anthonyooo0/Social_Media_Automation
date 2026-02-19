@@ -107,8 +107,14 @@
       "description": "Add a helper function to filter out common English stop words for cleaner word frequency analysis.",
       "type": "feature",
       "file": "app.py"
+    },
+    {
+      "date": "2026-02-18T18:42:43.842948",
+      "description": "Add a helper function to categorize Reddit posts by media type (Text, Image, Video, Link).",
+      "type": "feature",
+      "file": "app.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-18T18:42:15.988241"
+  "last_run": "2026-02-18T18:42:43.842962"
 }
