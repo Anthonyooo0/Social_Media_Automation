@@ -136,3 +136,17 @@ def analyze_sentiment(texts):
         else:
             stats['neutral'] += 1
     return stats
+
+
+# AI Improvement (2026-02-20)
+# Add a helper function to extract top keywords, filtering out common stop words and punctuation.
+def get_top_keywords(texts, limit=20):
+    """Extracts the most frequent meaningful keywords from a list of strings."""
+    stops = {'the', 'and', 'for', 'with', 'this', 'that', 'from', 'was', 'are', 'but', 'not', 'have', 'has', 'they', 'what', 'who', 'how', 'about', 'will', 'your', 'their', 'can', 'all', 'more', 'just', 'when'}
+    counts = {}
+    for text in texts:
+        for word in text.lower().split():
+            w = word.strip('.,!?:;"()')
+            if w not in stops and len(w) > 2:
+                counts[w] = counts.get(w, 0) + 1
+    return sorted(counts.items(), key=lambda x: x[1], reverse=True)[:limit]
