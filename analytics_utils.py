@@ -114,3 +114,25 @@ def get_content_type_distribution(urls):
         else:
             stats["Article"] += 1
     return stats
+
+
+# AI Improvement (2026-02-20)
+# Complete the sentiment analysis helper function using a keyword-based scoring system.
+def analyze_sentiment(texts):
+    """Categorizes text content into positive, negative, or neutral buckets based on keyword matching."""
+    pos_words = {'excellent', 'good', 'great', 'awesome', 'amazing', 'love', 'perfect', 'best', 'positive', 'cool'}
+    neg_words = {'bad', 'awful', 'terrible', 'horrible', 'worst', 'hate', 'negative', 'poor', 'wrong', 'boring'}
+    
+    stats = {'positive': 0, 'neutral': 0, 'negative': 0}
+    for text in texts:
+        words = set(text.lower().split())
+        pos_score = len(words.intersection(pos_words))
+        neg_score = len(words.intersection(neg_words))
+        
+        if pos_score > neg_score:
+            stats['positive'] += 1
+        elif neg_score > pos_score:
+            stats['negative'] += 1
+        else:
+            stats['neutral'] += 1
+    return stats
