@@ -200,3 +200,24 @@ def identify_content_type(url):
     elif 'reddit.com' in u and '/comments/' in u:
         return 'Self-post'
     return 'Article'
+
+
+# AI Improvement (2026-02-22)
+# Complete the basic sentiment analysis helper function to categorize text into positive, negative, and neutral buckets.
+def analyze_sentiment(texts):
+    """Categorizes text content into positive, negative, or neutral buckets."""
+    pos_words = {'excellent', 'good', 'great', 'best', 'amazing', 'useful', 'helpful', 'positive', 'success', 'win'}
+    neg_words = {'bad', 'worst', 'terrible', 'awful', 'negative', 'failure', 'fail', 'problem', 'broken', 'sad'}
+    
+    counts = {'positive': 0, 'neutral': 0, 'negative': 0}
+    for text in texts:
+        words = set(str(text).lower().split())
+        p_score = len(words & pos_words)
+        n_score = len(words & neg_words)
+        if p_score > n_score:
+            counts['positive'] += 1
+        elif n_score > p_score:
+            counts['negative'] += 1
+        else:
+            counts['neutral'] += 1
+    return counts

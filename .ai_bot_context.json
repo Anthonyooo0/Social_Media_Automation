@@ -179,8 +179,14 @@
       "description": "Add a helper function to format large engagement metrics into human-readable strings.",
       "type": "feature",
       "file": "analytics_utils.py"
+    },
+    {
+      "date": "2026-02-22T08:57:59.072994",
+      "description": "Add a helper function to categorize post URLs into media types (Image, Video, Self-post, or Article).",
+      "type": "feature",
+      "file": "analytics_utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-22T08:57:27.334038"
+  "last_run": "2026-02-22T08:57:59.073021"
 }
