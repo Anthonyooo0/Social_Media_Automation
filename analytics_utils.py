@@ -221,3 +221,15 @@ def analyze_sentiment(texts):
         else:
             counts['neutral'] += 1
     return counts
+
+
+# AI Improvement (2026-02-22)
+# Add a helper function to aggregate timestamps into a 24-hour frequency distribution.
+def get_hourly_distribution(timestamps):
+    """Aggregates Unix timestamps into a fixed 24-hour distribution (0-23) for charting."""
+    from datetime import datetime
+    counts = {i: 0 for i in range(24)}
+    for ts in timestamps:
+        hour = datetime.fromtimestamp(float(ts)).hour
+        counts[hour] += 1
+    return [counts[i] for i in range(24)]
