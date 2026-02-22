@@ -233,3 +233,14 @@ def get_hourly_distribution(timestamps):
         hour = datetime.fromtimestamp(float(ts)).hour
         counts[hour] += 1
     return [counts[i] for i in range(24)]
+
+
+# AI Improvement (2026-02-22)
+# Add a helper function to identify viral outliers in engagement metrics.
+
+def identify_viral_outliers(metrics, factor=3.0):
+    """Identifies metrics that are significantly higher than the average (potential viral content)."""
+    if not metrics or len(metrics) < 2:
+        return []
+    average = sum(metrics) / len(metrics)
+    return [m for m in metrics if m > average * factor]
