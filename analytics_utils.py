@@ -186,3 +186,17 @@ def format_short_number(num):
     if num >= 1000:
         return f"{num / 1000:.1f}k"
     return str(num)
+
+
+# AI Improvement (2026-02-22)
+# Add a helper function to categorize post URLs into media types (Image, Video, Self-post, or Article).
+def identify_content_type(url):
+    """Categorizes a URL into media types: Image, Video, Self-post, or Article."""
+    u = url.lower()
+    if any(x in u for x in ['.jpg', '.jpeg', '.png', '.gif', 'imgur.com', 'i.redd.it']):
+        return 'Image'
+    elif any(x in u for x in ['youtube.com', 'youtu.be', 'v.redd.it', 'vimeo.com']):
+        return 'Video'
+    elif 'reddit.com' in u and '/comments/' in u:
+        return 'Self-post'
+    return 'Article'
