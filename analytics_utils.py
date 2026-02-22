@@ -150,3 +150,12 @@ def get_top_keywords(texts, limit=20):
             if w not in stops and len(w) > 2:
                 counts[w] = counts.get(w, 0) + 1
     return sorted(counts.items(), key=lambda x: x[1], reverse=True)[:limit]
+
+
+# AI Improvement (2026-02-22)
+# Add a trending score calculator using a time-decay formula to identify 'hot' content.
+
+def calculate_trending_score(score, hours_old):
+    """Calculates a trending score using a time-decay formula to surface 'hot' content."""
+    # Gravity formula: Score / (Age + 2)^1.5
+    return round(score / pow((max(0, hours_old) + 2), 1.5), 4)

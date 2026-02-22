@@ -155,8 +155,14 @@
       "description": "Complete the sentiment analysis helper function using a keyword-based scoring system.",
       "type": "feature",
       "file": "analytics_utils.py"
+    },
+    {
+      "date": "2026-02-20T15:38:22.149794",
+      "description": "Add a helper function to extract top keywords, filtering out common stop words and punctuation.",
+      "type": "feature",
+      "file": "analytics_utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-20T15:37:38.969394"
+  "last_run": "2026-02-20T15:38:22.149824"
 }
