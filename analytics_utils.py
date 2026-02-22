@@ -159,3 +159,19 @@ def calculate_trending_score(score, hours_old):
     """Calculates a trending score using a time-decay formula to surface 'hot' content."""
     # Gravity formula: Score / (Age + 2)^1.5
     return round(score / pow((max(0, hours_old) + 2), 1.5), 4)
+
+
+# AI Improvement (2026-02-22)
+# Add a helper function to extract top phrases (n-grams) for more contextual trending topic detection.
+def get_top_phrases(texts, n=2, limit=10):
+    """Extracts the most common n-word phrases (n-grams) to identify context-rich trends."""
+    import re
+    from collections import Counter
+    phrases = []
+    for text in texts:
+        # Find all words with at least 3 characters
+        words = re.findall(r'\b\w{3,}\b', text.lower())
+        for i in range(len(words) - n + 1):
+            phrase = " ".join(words[i:i+n])
+            phrases.append(phrase)
+    return Counter(phrases).most_common(limit)
