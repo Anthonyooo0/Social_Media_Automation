@@ -175,3 +175,14 @@ def get_top_phrases(texts, n=2, limit=10):
             phrase = " ".join(words[i:i+n])
             phrases.append(phrase)
     return Counter(phrases).most_common(limit)
+
+
+# AI Improvement (2026-02-22)
+# Add a helper function to format large engagement metrics into human-readable strings.
+def format_short_number(num):
+    """Formats large numbers into human-readable strings (e.g., 1500 -> 1.5k)."""
+    if num >= 1000000:
+        return f"{num / 1000000:.1f}M"
+    if num >= 1000:
+        return f"{num / 1000:.1f}k"
+    return str(num)
