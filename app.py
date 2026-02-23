@@ -383,3 +383,12 @@ def analyze_content_types(posts):
         else:
             stats['link'] += 1
     return stats
+
+
+# AI Improvement (2026-02-23)
+# Add a helper function to calculate the engagement rate relative to the subreddit's total subscriber count.
+def calculate_relative_engagement(score, comments, subscribers):
+    if not subscribers or subscribers == 0:
+        return 0.0
+    # Calculate engagement per 1,000 subscribers for better readability
+    return round(((score + comments) / subscribers) * 1000, 4)
