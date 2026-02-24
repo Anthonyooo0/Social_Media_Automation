@@ -32,3 +32,19 @@ def calculate_post_velocity(score, created_utc):
     age_hours = (now - created_utc) / 3600
     # Use 0.1 hours as a minimum age to avoid extreme values for very new posts
     return round(score / max(age_hours, 0.1), 2)
+
+
+# AI Improvement (2026-02-24)
+# Add a helper function to perform basic keyword-based sentiment analysis on post titles or content.
+
+def calculate_sentiment(text):
+    """Performs basic keyword-based sentiment analysis to categorize text as positive, negative, or neutral."""
+    import re
+    pos_words = {'great', 'awesome', 'excellent', 'good', 'love', 'amazing', 'best', 'helpful', 'useful', 'cool'}
+    neg_words = {'bad', 'terrible', 'worst', 'awful', 'hate', 'horrible', 'useless', 'broken', 'annoying', 'boring'}
+    # Remove punctuation and lowercase
+    clean_text = re.sub(r'[^\w\s]', '', str(text).lower())
+    tokens = clean_text.split()
+    # Calculate score
+    score = sum(1 for word in tokens if word in pos_words) - sum(1 for word in tokens if word in neg_words)
+    return 'positive' if score > 0 else ('negative' if score < 0 else 'neutral')
