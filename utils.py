@@ -7,3 +7,17 @@ def filter_stop_words(text):
     words = re.findall(r'\b\w+\b', text.lower())
     # Return only non-stop words with length > 2 to remove noise
     return [w for w in words if w not in stop_words and len(w) > 2]
+
+
+# AI Improvement (2026-02-24)
+# Add a text cleaning helper to remove URLs and Markdown formatting from Reddit content
+def clean_social_text(text):
+    import re
+    # Remove URLs (http, https, www)
+    text = re.sub(r'http\S+|www\S+', '', text)
+    # Remove markdown links: [label](url) -> label
+    text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', text)
+    # Remove basic markdown formatting characters like bold, italics, headers
+    text = re.sub(r'[*_~#>`\-]', '', text)
+    # Normalize whitespace
+    return ' '.join(text.split())
