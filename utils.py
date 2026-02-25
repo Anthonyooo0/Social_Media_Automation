@@ -48,3 +48,16 @@ def calculate_sentiment(text):
     # Calculate score
     score = sum(1 for word in tokens if word in pos_words) - sum(1 for word in tokens if word in neg_words)
     return 'positive' if score > 0 else ('negative' if score < 0 else 'neutral')
+
+
+# AI Improvement (2026-02-25)
+# Add a helper function to categorize post hours into time-of-day segments.
+def get_time_of_day_category(hour):
+    """Categorize an hour (0-23) into Morning, Afternoon, Evening, or Night segments."""
+    if 5 <= hour < 12:
+        return 'Morning'
+    elif 12 <= hour < 17:
+        return 'Afternoon'
+    elif 17 <= hour < 21:
+        return 'Evening'
+    return 'Night'
