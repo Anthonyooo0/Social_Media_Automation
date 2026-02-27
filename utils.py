@@ -86,3 +86,15 @@ def calculate_engagement_density(score, num_comments):
     if not score or score <= 0:
         return 0.0
     return round((num_comments / score) * 100, 2)
+
+
+# AI Improvement (2026-02-27)
+# Add a helper function to extract the source domain from post URLs for source-based analytics.
+
+def extract_domain(url):
+    from urllib.parse import urlparse
+    try:
+        domain = urlparse(url).netloc
+        return domain.lower().replace('www.', '') if domain else 'self'
+    except Exception:
+        return 'unknown'
