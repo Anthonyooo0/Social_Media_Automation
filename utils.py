@@ -98,3 +98,14 @@ def extract_domain(url):
         return domain.lower().replace('www.', '') if domain else 'self'
     except Exception:
         return 'unknown'
+
+
+# AI Improvement (2026-02-27)
+# Add a text cleaning helper to remove URLs and special characters for cleaner word frequency analysis.
+def clean_text(text):
+    import re
+    # Remove URLs
+    text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE)
+    # Remove special characters and numbers, keep only letters and spaces
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    return " ".join(text.lower().split())

@@ -251,8 +251,14 @@
       "description": "Add a helper function to calculate engagement density (comments-to-score ratio).",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-02-27T10:38:28.737050",
+      "description": "Add a helper function to extract the source domain from post URLs for source-based analytics.",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-27T10:37:50.240016"
+  "last_run": "2026-02-27T10:38:28.737130"
 }
