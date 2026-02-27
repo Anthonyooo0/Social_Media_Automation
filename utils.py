@@ -109,3 +109,14 @@ def clean_text(text):
     # Remove special characters and numbers, keep only letters and spaces
     text = re.sub(r'[^a-zA-Z\s]', '', text)
     return " ".join(text.lower().split())
+
+
+# AI Improvement (2026-02-27)
+# Add a basic sentiment analysis helper to categorize post titles.
+def analyze_sentiment(text):
+    """Categorizes text as positive, negative, or neutral based on keyword polarity."""
+    positive_words = {'great', 'awesome', 'excellent', 'happy', 'good', 'best', 'cool', 'love', 'amazing', 'useful', 'helpful'}
+    negative_words = {'bad', 'terrible', 'awful', 'horrible', 'worst', 'sad', 'hate', 'poor', 'annoying', 'wrong', 'broken'}
+    words = str(text).lower().split()
+    score = sum(1 for word in words if word in positive_words) - sum(1 for word in words if word in negative_words)
+    return 'positive' if score > 0 else ('negative' if score < 0 else 'neutral')
