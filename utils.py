@@ -120,3 +120,13 @@ def analyze_sentiment(text):
     words = str(text).lower().split()
     score = sum(1 for word in words if word in positive_words) - sum(1 for word in words if word in negative_words)
     return 'positive' if score > 0 else ('negative' if score < 0 else 'neutral')
+
+
+# AI Improvement (2026-02-27)
+# Add a helper function to format large engagement counts into human-readable strings like '1.2k' or '4.5M'.
+def format_count(num):
+    if num >= 1000000:
+        return f'{num / 1000000:.1f}M'
+    if num >= 1000:
+        return f'{num / 1000:.1f}k'
+    return str(num)
