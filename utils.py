@@ -130,3 +130,14 @@ def format_count(num):
     if num >= 1000:
         return f'{num / 1000:.1f}k'
     return str(num)
+
+
+# AI Improvement (2026-02-27)
+# Add a trend score helper that calculates post 'hotness' using engagement and time decay.
+def calculate_trend_score(score, comment_count, created_utc):
+    from datetime import datetime
+    # Calculate age in hours, ensuring a minimum of 1 to avoid division errors or extreme weight
+    age_hours = max((datetime.now().timestamp() - created_utc) / 3600, 1)
+    # Gravity-based ranking formula (Score + Weighted Comments) / Age^Gravity
+    # Higher gravity (1.5) ensures that older posts fall off the 'trending' list quickly
+    return round((score + (comment_count * 2)) / (age_hours ** 1.5), 2)

@@ -269,8 +269,14 @@
       "description": "Add a basic sentiment analysis helper to categorize post titles.",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-02-27T10:40:15.646732",
+      "description": "Add a helper function to format large engagement counts into human-readable strings like '1.2k' or '4.5M'.",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-27T10:39:40.466549"
+  "last_run": "2026-02-27T10:40:15.646765"
 }
