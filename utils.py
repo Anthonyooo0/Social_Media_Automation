@@ -61,3 +61,19 @@ def get_time_of_day_category(hour):
     elif 17 <= hour < 21:
         return 'Evening'
     return 'Night'
+
+
+# AI Improvement (2026-02-27)
+# Add a helper function to sanitize subreddit name inputs safely.
+def sanitize_subreddit(name):
+    """
+    Cleans subreddit input by removing 'r/' prefixes and leading/trailing slashes.
+    """
+    if not name:
+        return ""
+    name = name.strip().lower()
+    if name.startswith('r/'):
+        name = name[2:]
+    elif name.startswith('/r/'):
+        name = name[3:]
+    return name.strip('/')
