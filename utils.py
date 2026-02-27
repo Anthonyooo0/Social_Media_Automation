@@ -77,3 +77,12 @@ def sanitize_subreddit(name):
     elif name.startswith('/r/'):
         name = name[3:]
     return name.strip('/')
+
+
+# AI Improvement (2026-02-27)
+# Add a helper function to calculate engagement density (comments-to-score ratio).
+def calculate_engagement_density(score, num_comments):
+    """Calculates the ratio of comments per score to measure discussion intensity."""
+    if not score or score <= 0:
+        return 0.0
+    return round((num_comments / score) * 100, 2)
