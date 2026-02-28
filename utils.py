@@ -162,3 +162,14 @@ def extract_domain(url):
         return 'self'
     domain = urlparse(url).netloc
     return domain.replace('www.', '') if domain else 'self'
+
+
+# AI Improvement (2026-02-28)
+# Add a text cleaning helper to remove URLs and non-alphabetic characters for more accurate word frequency analysis.
+def clean_text_for_analysis(text):
+    import re
+    # Remove URLs
+    text = re.sub(r'http\S+', '', text)
+    # Remove special characters and numbers, keeping only letters and spaces
+    cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
+    return cleaned.lower().strip()
