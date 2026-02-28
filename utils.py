@@ -173,3 +173,17 @@ def clean_text_for_analysis(text):
     # Remove special characters and numbers, keeping only letters and spaces
     cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
     return cleaned.lower().strip()
+
+
+# AI Improvement (2026-02-28)
+# Add a basic lexicon-based sentiment analysis helper to estimate the emotional tone of post titles.
+
+def calculate_sentiment_score(text):
+    import re
+    """Calculates a simple sentiment score (-1 to 1) based on keyword matching."""
+    positive = {'great', 'amazing', 'excellent', 'good', 'love', 'helpful', 'awesome', 'best', 'perfect', 'fantastic', 'top', 'upvote'}
+    negative = {'bad', 'terrible', 'awful', 'horrible', 'worst', 'hate', 'useless', 'boring', 'annoying', 'wrong', 'downvote'}
+    words = re.findall(r'\w+', text.lower())
+    if not words: return 0.0
+    score = sum(1 for w in words if w in positive) - sum(1 for w in words if w in negative)
+    return round(score / len(words), 4)
