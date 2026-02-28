@@ -141,3 +141,14 @@ def calculate_trend_score(score, comment_count, created_utc):
     # Gravity-based ranking formula (Score + Weighted Comments) / Age^Gravity
     # Higher gravity (1.5) ensures that older posts fall off the 'trending' list quickly
     return round((score + (comment_count * 2)) / (age_hours ** 1.5), 2)
+
+
+# AI Improvement (2026-02-28)
+# Add a subreddit name validation helper to verify naming conventions before API requests.
+
+def validate_subreddit_name(name):
+    import re
+    if not name or not isinstance(name, str):
+        return False
+    # Reddit subreddits are 3-21 characters, alphanumeric and underscores only
+    return bool(re.match(r'^[A-Za-z0-9_]{3,21}$', name))
