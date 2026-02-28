@@ -187,3 +187,19 @@ def calculate_sentiment_score(text):
     if not words: return 0.0
     score = sum(1 for w in words if w in positive) - sum(1 for w in words if w in negative)
     return round(score / len(words), 4)
+
+
+# AI Improvement (2026-02-28)
+# Add a utility function to format large numbers into human-readable strings (e.g., 1.5k).
+def format_large_number(num):
+    """Converts large numbers to a compact string format (e.g. 1.5k, 2.3M)."""
+    if not num: return "0"
+    try:
+        num = float(num)
+        for unit in ['', 'k', 'M', 'B']:
+            if abs(num) < 1000.0:
+                return f"{num:.1f}{unit}".replace('.0', '')
+            num /= 1000.0
+        return f"{num:.1f}T".replace('.0', '')
+    except (ValueError, TypeError):
+        return "0"
