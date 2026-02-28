@@ -281,8 +281,14 @@
       "description": "Add a trend score helper that calculates post 'hotness' using engagement and time decay.",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-02-28T13:07:00.595013",
+      "description": "Add a subreddit name validation helper to verify naming conventions before API requests.",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-27T10:40:54.100788"
+  "last_run": "2026-02-28T13:07:00.595036"
 }

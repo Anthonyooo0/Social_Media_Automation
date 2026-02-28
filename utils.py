@@ -152,3 +152,13 @@ def validate_subreddit_name(name):
         return False
     # Reddit subreddits are 3-21 characters, alphanumeric and underscores only
     return bool(re.match(r'^[A-Za-z0-9_]{3,21}$', name))
+
+
+# AI Improvement (2026-02-28)
+# Add a helper function to extract the source domain from post URLs.
+def extract_domain(url):
+    from urllib.parse import urlparse
+    if not url or 'reddit.com' in url or not url.startswith('http'):
+        return 'self'
+    domain = urlparse(url).netloc
+    return domain.replace('www.', '') if domain else 'self'
