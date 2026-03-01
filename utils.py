@@ -214,3 +214,12 @@ def identify_content_type(url):
     if any(vid in url_lower for vid in ['.mp4', '.gifv', 'youtube.com', 'youtu.be', 'v.redd.it']):
         return 'video'
     return 'link'
+
+
+# AI Improvement (2026-03-01)
+# Add a utility function to calculate the engagement ratio (comments per score) to identify discussion-heavy posts.
+def calculate_engagement_ratio(score, num_comments):
+    """Calculates the ratio of comments to score as a percentage to measure discussion depth."""
+    if not score or score <= 0:
+        return 0.0
+    return round((num_comments / score) * 100, 2)
