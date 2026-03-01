@@ -203,3 +203,14 @@ def format_large_number(num):
         return f"{num:.1f}T".replace('.0', '')
     except (ValueError, TypeError):
         return "0"
+
+
+# AI Improvement (2026-03-01)
+# Add a utility function to categorize post content type based on URL patterns.
+def identify_content_type(url):
+    url_lower = url.lower()
+    if any(ext in url_lower for ext in ['.jpg', '.jpeg', '.png', '.gif']):
+        return 'image'
+    if any(vid in url_lower for vid in ['.mp4', '.gifv', 'youtube.com', 'youtu.be', 'v.redd.it']):
+        return 'video'
+    return 'link'

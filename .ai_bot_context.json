@@ -305,8 +305,14 @@
       "description": "Add a basic lexicon-based sentiment analysis helper to estimate the emotional tone of post titles.",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-02-28T13:08:41.270838",
+      "description": "Add a utility function to format large numbers into human-readable strings (e.g., 1.5k).",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-02-28T13:08:18.271746"
+  "last_run": "2026-02-28T13:08:41.270865"
 }
