@@ -233,3 +233,18 @@ def is_valid_subreddit_name(name):
     if not name or not isinstance(name, str):
         return False
     return bool(re.match(r'^[a-zA-Z0-9_]{3,21}$', name))
+
+
+# AI Improvement (2026-03-01)
+# Add a utility function to convert Unix timestamps into human-readable 'time ago' strings.
+def format_time_ago(timestamp):
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).timestamp()
+    diff = now - timestamp
+    if diff < 60:
+        return 'just now'
+    if diff < 3600:
+        return f'{int(diff // 60)}m ago'
+    if diff < 86400:
+        return f'{int(diff // 3600)}h ago'
+    return f'{int(diff // 86400)}d ago'

@@ -323,8 +323,14 @@
       "description": "Add a utility function to calculate the engagement ratio (comments per score) to identify discussion-heavy posts.",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-03-01T11:44:20.305792",
+      "description": "Add a validation function for subreddit names to ensure they follow Reddit's naming conventions.",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-01T11:43:55.988081"
+  "last_run": "2026-03-01T11:44:20.305816"
 }
