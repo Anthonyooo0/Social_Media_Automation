@@ -248,3 +248,14 @@ def format_time_ago(timestamp):
     if diff < 86400:
         return f'{int(diff // 3600)}h ago'
     return f'{int(diff // 86400)}d ago'
+
+
+# AI Improvement (2026-03-01)
+# Add a utility function to calculate score velocity (points per hour)
+def calculate_score_velocity(score, created_utc):
+    import time
+    # Calculate hours elapsed since post creation
+    hours_since_posted = (time.time() - created_utc) / 3600
+    # Use a minimum of 0.1 hours to avoid division by zero and extreme spikes for very new posts
+    velocity = score / max(hours_since_posted, 0.1)
+    return round(velocity, 2)
