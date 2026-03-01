@@ -223,3 +223,13 @@ def calculate_engagement_ratio(score, num_comments):
     if not score or score <= 0:
         return 0.0
     return round((num_comments / score) * 100, 2)
+
+
+# AI Improvement (2026-03-01)
+# Add a validation function for subreddit names to ensure they follow Reddit's naming conventions.
+def is_valid_subreddit_name(name):
+    import re
+    # Reddit subreddits are 3-21 characters, alphanumeric and underscores only.
+    if not name or not isinstance(name, str):
+        return False
+    return bool(re.match(r'^[a-zA-Z0-9_]{3,21}$', name))
