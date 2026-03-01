@@ -259,3 +259,21 @@ def calculate_score_velocity(score, created_utc):
     # Use a minimum of 0.1 hours to avoid division by zero and extreme spikes for very new posts
     velocity = score / max(hours_since_posted, 0.1)
     return round(velocity, 2)
+
+
+# AI Improvement (2026-03-01)
+# Add a simple keyword-based sentiment analysis helper to analyze post titles or comments.
+
+def calculate_sentiment(text):
+    """Calculates a basic sentiment score: positive (>0), neutral (0), or negative (<0)."""
+    positive_words = {'awesome', 'best', 'excellent', 'good', 'great', 'love', 'cool', 'amazing', 'helpful', 'interesting'}
+    negative_words = {'awful', 'bad', 'terrible', 'worst', 'hate', 'broken', 'annoying', 'poor', 'useless', 'horrible'}
+    words = text.lower().split()
+    score = 0
+    for word in words:
+        clean_word = word.strip('.,!?()[]"\'')
+        if clean_word in positive_words:
+            score += 1
+        elif clean_word in negative_words:
+            score -= 1
+    return score
