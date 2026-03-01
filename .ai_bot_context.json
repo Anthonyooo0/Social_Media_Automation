@@ -347,8 +347,14 @@
       "description": "Add a simple keyword-based sentiment analysis helper to analyze post titles or comments.",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-03-01T11:46:23.140402",
+      "description": "Add a utility function to categorize Reddit posts by content type (text, image, video, or link).",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-01T11:45:48.282072"
+  "last_run": "2026-03-01T11:46:23.140415"
 }

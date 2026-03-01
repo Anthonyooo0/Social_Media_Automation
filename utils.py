@@ -294,3 +294,18 @@ def get_content_type(url, is_self):
     if any(domain in url_lower for domain in video_domains):
         return 'video'
     return 'link'
+
+
+# AI Improvement (2026-03-01)
+# Add a utility function to format large numeric counts into abbreviated strings (e.g., 1.2k, 5.0M).
+
+def format_large_number(num):
+    """Converts a number to a compact string representation (e.g. 1500 -> 1.5k)."""
+    if num is None:
+        return '0'
+    num = float(num)
+    if num >= 1000000:
+        return f'{num / 1000000:.1f}M'
+    elif num >= 1000:
+        return f'{num / 1000:.1f}k'
+    return str(int(num))
