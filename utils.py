@@ -309,3 +309,14 @@ def format_large_number(num):
     elif num >= 1000:
         return f'{num / 1000:.1f}k'
     return str(int(num))
+
+
+# AI Improvement (2026-03-01)
+# Add a validation helper to ensure subreddit names follow Reddit's naming conventions.
+def is_valid_subreddit(name):
+    import re
+    # Reddit subreddits must be between 3 and 21 characters
+    # and can only contain alphanumeric characters and underscores.
+    if not name:
+        return False
+    return bool(re.match(r'^[a-zA-Z0-9_]{3,21}$', name))
