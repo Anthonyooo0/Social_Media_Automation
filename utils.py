@@ -277,3 +277,20 @@ def calculate_sentiment(text):
         elif clean_word in negative_words:
             score -= 1
     return score
+
+
+# AI Improvement (2026-03-01)
+# Add a utility function to categorize Reddit posts by content type (text, image, video, or link).
+
+def get_content_type(url, is_self):
+    """Categorizes post content type based on URL and self-post status."""
+    if is_self:
+        return 'text'
+    url_lower = url.lower()
+    image_exts = ('.jpg', '.jpeg', '.png', '.gif', '.webp', '.gifv')
+    video_domains = ('youtube.com', 'youtu.be', 'v.redd.it', 'vimeo.com')
+    if any(url_lower.endswith(ext) for ext in image_exts):
+        return 'image'
+    if any(domain in url_lower for domain in video_domains):
+        return 'video'
+    return 'link'
