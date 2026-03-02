@@ -320,3 +320,17 @@ def is_valid_subreddit(name):
     if not name:
         return False
     return bool(re.match(r'^[a-zA-Z0-9_]{3,21}$', name))
+
+
+# AI Improvement (2026-03-02)
+# Add a keyword extraction helper to identify trending topics by filtering out common stop words.
+def extract_top_keywords(text_list, limit=10):
+    """Extracts the most frequent keywords from a list of strings, excluding common English stop words."""
+    stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'to', 'for', 'in', 'on', 'at', 'by', 'of', 'with', 'it', 'its', 'this', 'that', 'from', 'how', 'what', 'why', 'can', 'not', 'if', 'your', 'my', 'with', 'about'}
+    counts = {}
+    for text in text_list:
+        for word in text.lower().split():
+            word = ''.join(filter(str.isalnum, word))
+            if word and word not in stop_words and len(word) > 2:
+                counts[word] = counts.get(word, 0) + 1
+    return sorted(counts.items(), key=lambda x: x[1], reverse=True)[:limit]

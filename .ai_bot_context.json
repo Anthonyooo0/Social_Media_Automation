@@ -359,8 +359,14 @@
       "description": "Add a utility function to format large numeric counts into abbreviated strings (e.g., 1.2k, 5.0M).",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-03-01T11:47:30.947471",
+      "description": "Add a validation helper to ensure subreddit names follow Reddit's naming conventions.",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-01T11:46:48.997214"
+  "last_run": "2026-03-01T11:47:30.947485"
 }
