@@ -334,3 +334,22 @@ def extract_top_keywords(text_list, limit=10):
             if word and word not in stop_words and len(word) > 2:
                 counts[word] = counts.get(word, 0) + 1
     return sorted(counts.items(), key=lambda x: x[1], reverse=True)[:limit]
+
+
+# AI Improvement (2026-03-02)
+# Add a sentiment analysis utility function to classify the tone of Reddit posts.
+def get_sentiment_label(text):
+    """
+    Classifies text as Positive, Negative, or Neutral based on keyword presence.
+    This provides a lightweight way to gauge community reaction.
+    """
+    pos_words = {'excellent', 'great', 'good', 'amazing', 'love', 'best', 'incredible', 'helpful', 'useful', 'awesome', 'interesting'}
+    neg_words = {'terrible', 'bad', 'awful', 'worst', 'hate', 'annoying', 'broken', 'useless', 'horrible', 'disappointing', 'wrong'}
+    
+    # Basic tokenization and scoring
+    tokens = text.lower().strip().split()
+    score = sum(1 for word in tokens if word in pos_words) - sum(1 for word in tokens if word in neg_words)
+    
+    if score > 0: return 'Positive'
+    if score < 0: return 'Negative'
+    return 'Neutral'

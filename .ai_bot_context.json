@@ -377,8 +377,14 @@
       "description": "Add a score velocity calculator to measure how fast a post is gaining points.",
       "type": "feature",
       "file": "utils/analytics.py"
+    },
+    {
+      "date": "2026-03-02T14:03:31.373865",
+      "description": "Add a text cleaning utility to strip Markdown syntax and URLs from post content.",
+      "type": "feature",
+      "file": "utils/text_processing.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-02T14:03:02.859098"
+  "last_run": "2026-03-02T14:03:31.373966"
 }
