@@ -371,8 +371,14 @@
       "description": "Add a keyword extraction helper to identify trending topics by filtering out common stop words.",
       "type": "feature",
       "file": "utils.py"
+    },
+    {
+      "date": "2026-03-02T14:03:02.859002",
+      "description": "Add a score velocity calculator to measure how fast a post is gaining points.",
+      "type": "feature",
+      "file": "utils/analytics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-02T14:02:45.050100"
+  "last_run": "2026-03-02T14:03:02.859098"
 }
