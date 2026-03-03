@@ -81,3 +81,14 @@ def extract_keywords(text):
     # Extract alphanumeric words of at least 3 characters and filter against stop words
     words = re.findall(r'[a-z]{3,}', text.lower())
     return [w for w in words if w not in stop_words]
+
+
+# AI Improvement (2026-03-03)
+# Add a reading time estimation utility
+def estimate_reading_time(text, words_per_minute=200):
+    """Estimates the reading time in minutes for a given text content."""
+    if not text:
+        return 0
+    words = text.split()
+    # Ensure at least 1 minute is returned for any non-empty text
+    return max(1, round(len(words) / words_per_minute))
