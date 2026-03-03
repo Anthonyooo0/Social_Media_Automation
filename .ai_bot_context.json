@@ -407,8 +407,14 @@
       "description": "Add a word frequency counter with stopword filtering to extract meaningful insights from post content.",
       "type": "feature",
       "file": "utils/text_processing.py"
+    },
+    {
+      "date": "2026-03-03T18:35:22.301229",
+      "description": "Add HTML entity unescaping to the text sanitization utility.",
+      "type": "bug_fix",
+      "file": "utils/text_processing.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-03T18:34:34.874588"
+  "last_run": "2026-03-03T18:35:22.303110"
 }

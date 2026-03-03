@@ -24,3 +24,18 @@ def calculate_controversy_score(score, num_comments):
     if score <= 0:
         return float(num_comments)
     return round(num_comments / score, 2)
+
+
+# AI Improvement (2026-03-03)
+# Add a hot score ranking algorithm to balance post popularity with recency.
+
+def calculate_hot_score(score, created_utc):
+    """
+    Calculates a ranking score that balances post popularity (score) with recency.
+    Based on the classic Reddit 'hot' algorithm.
+    """
+    import math
+    order = math.log10(max(abs(score), 1))
+    # Use Reddit epoch (2005-12-08) as the base for freshness calculation
+    seconds = created_utc - 1134028003
+    return round(order + seconds / 45000, 7)
