@@ -54,3 +54,16 @@ def get_time_ago(created_utc):
     if delta < 86400:
         return f"{delta // 3600}h ago"
     return f"{delta // 86400}d ago"
+
+
+# AI Improvement (2026-03-03)
+# Add an interaction ratio metric to measure discussion density relative to post score.
+
+def calculate_interaction_ratio(score, comments):
+    """
+    Calculates the ratio of comments per 100 points of score.
+    Helps identify if a post is driving discussion vs. just passive upvotes.
+    """
+    if score <= 0:
+        return 0.0
+    return round((comments / score) * 100, 2)
