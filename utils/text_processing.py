@@ -21,3 +21,19 @@ def normalize_subreddit_name(name):
         return ""
     clean_name = name.strip().lower().lstrip('/')
     return clean_name[2:] if clean_name.startswith('r/') else clean_name
+
+
+# AI Improvement (2026-03-03)
+# Add a word frequency counter with stopword filtering to extract meaningful insights from post content.
+from collections import Counter
+
+def get_word_frequencies(texts, top_n=20):
+    """Extracts the most frequent words from a list of strings, filtering out common stopwords."""
+    stopwords = {'the', 'and', 'this', 'that', 'with', 'from', 'for', 'was', 'were', 'about', 'would', 'could', 'their', 'there'}
+    all_words = []
+    for text in texts:
+        clean_text = sanitize_post_text(text)
+        # Extract words with 3+ characters and convert to lowercase
+        words = re.findall(r'\b\w{3,}\b', clean_text.lower())
+        all_words.extend([w for w in words if w not in stopwords])
+    return Counter(all_words).most_common(top_n)
