@@ -70,3 +70,14 @@ def estimate_sentiment(text):
     score = sum(1 for w in words if w in pos_terms) - sum(1 for w in words if w in neg_terms)
     # Normalize by square root of length to dampen the effect of long posts
     return round(max(min(score / (len(words)**0.5), 1.0), -1.0), 2)
+
+
+# AI Improvement (2026-03-03)
+# Add a keyword extraction helper that filters out stop words.
+
+def extract_keywords(text):
+    """Extracts meaningful keywords from text by removing common stop words and punctuation."""
+    stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'is', 'are', 'was', 'were', 'to', 'for', 'in', 'on', 'at', 'by', 'with', 'from', 'as', 'it', 'its', 'that', 'this', 'of', 'be', 'has', 'have', 'do', 'if', 'then', 'which', 'who', 'where', 'when', 'how'}
+    # Extract alphanumeric words of at least 3 characters and filter against stop words
+    words = re.findall(r'[a-z]{3,}', text.lower())
+    return [w for w in words if w not in stop_words]
