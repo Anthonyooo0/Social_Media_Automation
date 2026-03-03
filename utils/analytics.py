@@ -12,3 +12,15 @@ def calculate_score_velocity(score, created_utc):
     age_hours = age_seconds / 3600
     velocity = score / age_hours
     return round(velocity, 2)
+
+
+# AI Improvement (2026-03-03)
+# Add a controversy score helper to calculate the ratio of comments to upvotes.
+def calculate_controversy_score(score, num_comments):
+    """
+    Calculates a controversy score based on the ratio of comments to upvotes.
+    A higher ratio typically indicates more discussion relative to agreement.
+    """
+    if score <= 0:
+        return float(num_comments)
+    return round(num_comments / score, 2)
