@@ -39,3 +39,18 @@ def calculate_hot_score(score, created_utc):
     # Use Reddit epoch (2005-12-08) as the base for freshness calculation
     seconds = created_utc - 1134028003
     return round(order + seconds / 45000, 7)
+
+
+# AI Improvement (2026-03-03)
+# Add a helper to convert UTC timestamps into human-readable 'time ago' strings.
+
+def get_time_ago(created_utc):
+    """Converts a UTC timestamp into a human-readable 'time ago' string."""
+    delta = max(0, int(time.time() - created_utc))
+    if delta < 60:
+        return "just now"
+    if delta < 3600:
+        return f"{delta // 60}m ago"
+    if delta < 86400:
+        return f"{delta // 3600}h ago"
+    return f"{delta // 86400}d ago"

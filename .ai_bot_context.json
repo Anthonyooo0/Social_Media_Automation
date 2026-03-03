@@ -413,8 +413,14 @@
       "description": "Add HTML entity unescaping to the text sanitization utility.",
       "type": "bug_fix",
       "file": "utils/text_processing.py"
+    },
+    {
+      "date": "2026-03-03T18:35:51.102025",
+      "description": "Add a hot score ranking algorithm to balance post popularity with recency.",
+      "type": "feature",
+      "file": "utils/analytics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-03T18:35:22.303110"
+  "last_run": "2026-03-03T18:35:51.102061"
 }
