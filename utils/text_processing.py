@@ -56,3 +56,17 @@ def sanitize_post_text(text):
     text = re.sub(r'[*_~`#>]', '', text)
     # Clean extra whitespace and normalize to single spaces
     return ' '.join(text.split())
+
+
+# AI Improvement (2026-03-03)
+# Add a basic sentiment analysis utility to estimate post tone.
+
+def estimate_sentiment(text):
+    """Provides a rudimentary sentiment score (-1 to 1) based on keyword matching."""
+    pos_terms = {'amazing', 'best', 'excellent', 'good', 'great', 'helpful', 'love', 'perfect', 'thanks', 'wonderful'}
+    neg_terms = {'awful', 'bad', 'broken', 'error', 'fail', 'hate', 'issue', 'problem', 'terrible', 'worst'}
+    words = re.findall(r'\w+', (text or "").lower())
+    if not words: return 0.0
+    score = sum(1 for w in words if w in pos_terms) - sum(1 for w in words if w in neg_terms)
+    # Normalize by square root of length to dampen the effect of long posts
+    return round(max(min(score / (len(words)**0.5), 1.0), -1.0), 2)
