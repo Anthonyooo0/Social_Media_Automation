@@ -37,3 +37,22 @@ def get_word_frequencies(texts, top_n=20):
         words = re.findall(r'\b\w{3,}\b', clean_text.lower())
         all_words.extend([w for w in words if w not in stopwords])
     return Counter(all_words).most_common(top_n)
+
+
+# AI Improvement (2026-03-03)
+# Add HTML entity unescaping to the text sanitization utility.
+import re
+import html
+
+def sanitize_post_text(text):
+    """Removes Markdown syntax, URLs, and HTML entities to provide clean text for analysis."""
+    if not text:
+        return ""
+    # Unescape HTML entities (e.g., &amp; to &)
+    text = html.unescape(text)
+    # Remove URLs
+    text = re.sub(r'http\S+', '', text)
+    # Remove common Markdown formatting characters (bold, italic, headers, blockquotes)
+    text = re.sub(r'[*_~`#>]', '', text)
+    # Clean extra whitespace and normalize to single spaces
+    return ' '.join(text.split())
