@@ -103,3 +103,15 @@ def calculate_weighted_engagement(score, num_comments, comment_weight=5):
     This helps identify posts that generate active discussion rather than just passive agreement.
     """
     return (score or 0) + ((num_comments or 0) * comment_weight)
+
+
+# AI Improvement (2026-03-05)
+# Complete the implementation of calculate_controversy_score to provide a metric for discussion intensity.
+def calculate_controversy_score(score, num_comments):
+    """
+    Calculates a controversy score based on the ratio of comments to upvotes.
+    Higher ratios suggest a post is generating more discussion than agreement.
+    """
+    # Ensure score is at least 1 to avoid division by zero
+    safe_score = max(score, 1)
+    return round(num_comments / safe_score, 2)
