@@ -207,3 +207,11 @@ def extract_domain(url):
     if 'redd.it' in domain:
         return "reddit_media"
     return domain.replace('www.', '')
+
+
+# AI Improvement (2026-03-05)
+# Add a stopword removal utility to filter common English words from text analysis.
+def remove_stopwords(text):
+    """Removes common English stopwords to refine word frequency analysis."""
+    stopwords = {'a', 'an', 'the', 'and', 'or', 'but', 'if', 'because', 'as', 'of', 'at', 'by', 'for', 'with', 'about', 'into', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'this', 'that', 'these', 'those', 'i', 'me', 'my', 'we', 'our', 'you', 'your', 'he', 'him', 'his', 'she', 'her', 'it', 'its', 'they', 'them', 'their'}
+    return ' '.join([w for w in text.lower().split() if w not in stopwords and w.isalnum()])
