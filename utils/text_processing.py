@@ -167,3 +167,25 @@ def remove_stopwords(text, extra_words=None):
     clean_name = re.sub(r'^/?r/', '', clean_name)
     # Remove any surrounding slashes and return
     return clean_name.strip('/')
+
+
+# AI Improvement (2026-03-05)
+# Add a basic sentiment analysis helper to evaluate the emotional tone of post content.
+
+def calculate_sentiment_score(text):
+    """
+    Calculates a simple sentiment polarity score based on positive and negative word matches.
+    Returns a float where > 0 is positive and < 0 is negative.
+    """
+    if not text:
+        return 0.0
+    
+    pos_words = {'great', 'good', 'excellent', 'amazing', 'helpful', 'awesome', 'best', 'happy'}
+    neg_words = {'bad', 'awful', 'terrible', 'worst', 'horrible', 'useless', 'wrong', 'sad'}
+    
+    tokens = re.findall(r'\w+', text.lower())
+    if not tokens:
+        return 0.0
+        
+    score = sum(1 for word in tokens if word in pos_words) - sum(1 for word in tokens if word in neg_words)
+    return round(score / len(tokens), 4)
