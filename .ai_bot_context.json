@@ -503,8 +503,14 @@
       "description": "Add a basic sentiment analysis helper to evaluate the emotional tone of post content.",
       "type": "feature",
       "file": "utils/text_processing.py"
+    },
+    {
+      "date": "2026-03-05T11:46:39.477718",
+      "description": "Complete the implementation of calculate_controversy_score to provide a metric for discussion intensity.",
+      "type": "feature",
+      "file": "utils/analytics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-05T11:45:59.986103"
+  "last_run": "2026-03-05T11:46:39.477742"
 }

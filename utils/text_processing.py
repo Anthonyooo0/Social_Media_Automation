@@ -189,3 +189,21 @@ def calculate_sentiment_score(text):
         
     score = sum(1 for word in tokens if word in pos_words) - sum(1 for word in tokens if word in neg_words)
     return round(score / len(tokens), 4)
+
+
+# AI Improvement (2026-03-05)
+# Add a utility to extract and normalize the domain from URLs for content source analysis.
+def extract_domain(url):
+    """
+    Extracts the base domain from a URL to identify content sources.
+    Returns 'self' for text posts and 'reddit_media' for internal uploads.
+    """
+    from urllib.parse import urlparse
+    if not url or not isinstance(url, str):
+        return "self"
+    domain = urlparse(url).netloc.lower()
+    if not domain:
+        return "self"
+    if 'redd.it' in domain:
+        return "reddit_media"
+    return domain.replace('www.', '')
