@@ -78,3 +78,18 @@ def calculate_controversy_score(score, num_comments):
     """
     # Use max(score, 1) to avoid division by zero and handle low-score/high-comment posts
     return round(num_comments / max(score, 1), 2)
+
+
+# AI Improvement (2026-03-04)
+# Add a utility to identify the optimal posting hour based on historical engagement scores.
+def identify_optimal_posting_hour(posts):
+    """Analyzes posts to find the hour of day with highest average score."""
+    from collections import defaultdict
+    from datetime import datetime
+    if not posts: return None
+    stats = defaultdict(list)
+    for p in posts:
+        hr = datetime.fromtimestamp(p.get('created_utc', 0)).hour
+        stats[hr].append(p.get('score', 0))
+    avgs = {h: sum(s)/len(s) for h, s in stats.items()}
+    return max(avgs, key=avgs.get, default=None)
