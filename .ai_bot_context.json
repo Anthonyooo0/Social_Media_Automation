@@ -515,8 +515,14 @@
       "description": "Add a utility to extract and normalize the domain from URLs for content source analysis.",
       "type": "feature",
       "file": "utils/text_processing.py"
+    },
+    {
+      "date": "2026-03-05T11:48:06.816438",
+      "description": "Add a stopword removal utility to filter common English words from text analysis.",
+      "type": "feature",
+      "file": "utils/text_processing.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-05T11:47:33.463202"
+  "last_run": "2026-03-05T11:48:06.816451"
 }

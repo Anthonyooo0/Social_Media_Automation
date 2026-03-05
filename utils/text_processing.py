@@ -215,3 +215,18 @@ def remove_stopwords(text):
     """Removes common English stopwords to refine word frequency analysis."""
     stopwords = {'a', 'an', 'the', 'and', 'or', 'but', 'if', 'because', 'as', 'of', 'at', 'by', 'for', 'with', 'about', 'into', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'this', 'that', 'these', 'those', 'i', 'me', 'my', 'we', 'our', 'you', 'your', 'he', 'him', 'his', 'she', 'her', 'it', 'its', 'they', 'them', 'their'}
     return ' '.join([w for w in text.lower().split() if w not in stopwords and w.isalnum()])
+
+
+# AI Improvement (2026-03-05)
+# Add a reading time estimator utility to quantify content length.
+
+def estimate_reading_time(text, words_per_minute=200):
+    """
+    Estimates the reading time of a post in seconds.
+    Based on an average reading speed of 200 words per minute.
+    """
+    if not text:
+        return 0
+    word_count = len(text.split())
+    # Returns estimated reading time in seconds
+    return round((word_count / words_per_minute) * 60, 1)
