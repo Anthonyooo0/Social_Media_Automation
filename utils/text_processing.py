@@ -230,3 +230,17 @@ def estimate_reading_time(text, words_per_minute=200):
     word_count = len(text.split())
     # Returns estimated reading time in seconds
     return round((word_count / words_per_minute) * 60, 1)
+
+
+# AI Improvement (2026-03-05)
+# Complete the normalize_subreddit_name function to properly handle various user input formats.
+def normalize_subreddit_name(name):
+    """Cleans subreddit input by removing 'r/' or '/r/' prefixes and whitespace."""
+    if not name:
+        return ""
+    clean_name = name.strip().lower()
+    if clean_name.startswith('/r/'):
+        clean_name = clean_name[3:]
+    elif clean_name.startswith('r/'):
+        clean_name = clean_name[2:]
+    return clean_name.strip('/')
