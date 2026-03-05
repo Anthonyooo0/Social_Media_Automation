@@ -141,3 +141,19 @@ def estimate_sentiment(text):
     # Normalize by word density to keep score within -1 to 1 range
     normalized_score = score / (len(words) * 0.1 + 1)
     return round(max(min(normalized_score, 1.0), -1.0), 2)
+
+
+# AI Improvement (2026-03-05)
+# Add a stopword removal utility to filter out common filler words from text analysis.
+
+# AI Improvement (2026-03-05)
+# Add a utility to remove common English stopwords for more meaningful frequency analysis.
+def remove_stopwords(text, extra_words=None):
+    """Removes common English stopwords to highlight meaningful keywords in word frequency analysis."""
+    stopwords = {"the", "a", "an", "and", "or", "but", "if", "then", "else", "when", "at", "from", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "of", "in", "on", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "do", "does", "did", "this", "that", "it", "they", "them", "their", "we", "us", "our", "i", "me", "my", "you", "your"}
+    if extra_words:
+        stopwords.update(extra_words)
+    
+    words = text.lower().split()
+    filtered_words = [word for word in words if word.isalnum() and word not in stopwords]
+    return " ".join(filtered_words)
