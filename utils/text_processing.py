@@ -106,3 +106,18 @@ def normalize_subreddit_name(name):
     clean_name = re.sub(r'^/?r/', '', clean_name)
     # Ensure no trailing slashes remain
     return clean_name.strip('/')
+
+
+# AI Improvement (2026-03-04)
+# Add a utility to extract multi-word phrases (n-grams) from text.
+def extract_phrases(text, n=2):
+    """
+    Extracts n-gram phrases (default bigrams) from the text.
+    Helpful for identifying trending topics that consist of multiple words.
+    """
+    if not text:
+        return []
+    words = re.findall(r'\w+', text.lower())
+    if len(words) < n:
+        return []
+    return [' '.join(words[i:i+n]) for i in range(len(words)-n+1)]
