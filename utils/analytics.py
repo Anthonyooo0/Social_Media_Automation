@@ -93,3 +93,13 @@ def identify_optimal_posting_hour(posts):
         stats[hr].append(p.get('score', 0))
     avgs = {h: sum(s)/len(s) for h, s in stats.items()}
     return max(avgs, key=avgs.get, default=None)
+
+
+# AI Improvement (2026-03-05)
+# Add a weighted engagement score utility to prioritize discussion-heavy content.
+def calculate_weighted_engagement(score, num_comments, comment_weight=5):
+    """
+    Calculates a weighted engagement metric where comments are valued more than upvotes.
+    This helps identify posts that generate active discussion rather than just passive agreement.
+    """
+    return (score or 0) + ((num_comments or 0) * comment_weight)
