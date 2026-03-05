@@ -67,3 +67,14 @@ def calculate_interaction_ratio(score, comments):
     if score <= 0:
         return 0.0
     return round((comments / score) * 100, 2)
+
+
+# AI Improvement (2026-03-04)
+# Complete the unfinished controversy score function to provide engagement depth metrics.
+def calculate_controversy_score(score, num_comments):
+    """
+    Calculates a controversy score based on the ratio of comments to upvotes.
+    High ratios indicate significant community discussion relative to popularity.
+    """
+    # Use max(score, 1) to avoid division by zero and handle low-score/high-comment posts
+    return round(num_comments / max(score, 1), 2)
