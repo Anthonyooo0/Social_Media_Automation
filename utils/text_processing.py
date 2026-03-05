@@ -121,3 +121,23 @@ def extract_phrases(text, n=2):
     if len(words) < n:
         return []
     return [' '.join(words[i:i+n]) for i in range(len(words)-n+1)]
+
+
+# AI Improvement (2026-03-04)
+# Add a basic sentiment analysis helper to estimate the emotional tone of post content.
+def estimate_sentiment(text):
+    """
+    Estimates text sentiment from -1.0 (negative) to 1.0 (positive) using keyword analysis.
+    This provides a foundation for the roadmap's sentiment analysis feature.
+    """
+    pos_words = {'excellent', 'great', 'good', 'amazing', 'helpful', 'love', 'best', 'cool', 'upvote'}
+    neg_words = {'terrible', 'bad', 'awful', 'boring', 'useless', 'hate', 'worst', 'issue', 'wrong'}
+    
+    words = re.findall(r'\w+', (text or "").lower())
+    if not words:
+        return 0.0
+    
+    score = sum(1 for w in words if w in pos_words) - sum(1 for w in words if w in neg_words)
+    # Normalize by word density to keep score within -1 to 1 range
+    normalized_score = score / (len(words) * 0.1 + 1)
+    return round(max(min(normalized_score, 1.0), -1.0), 2)
