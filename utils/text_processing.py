@@ -157,3 +157,13 @@ def remove_stopwords(text, extra_words=None):
     words = text.lower().split()
     filtered_words = [word for word in words if word.isalnum() and word not in stopwords]
     return " ".join(filtered_words)
+
+
+# AI Improvement (2026-03-05)
+# Complete the unfinished normalize_subreddit_name function to handle various user input formats correctly.
+    # Remove whitespace and convert to lowercase for consistency
+    clean_name = name.strip().lower()
+    # Remove common prefixes 'r/' or '/r/' using regex for robustness
+    clean_name = re.sub(r'^/?r/', '', clean_name)
+    # Remove any surrounding slashes and return
+    return clean_name.strip('/')
