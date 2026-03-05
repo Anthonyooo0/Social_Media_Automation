@@ -92,3 +92,17 @@ def estimate_reading_time(text, words_per_minute=200):
     words = text.split()
     # Ensure at least 1 minute is returned for any non-empty text
     return max(1, round(len(words) / words_per_minute))
+
+
+# AI Improvement (2026-03-04)
+# Complete the normalize_subreddit_name function to robustly handle various subreddit input formats.
+def normalize_subreddit_name(name):
+    """Cleans subreddit input by removing 'r/' or '/r/' prefixes and whitespace."""
+    if not name:
+        return ""
+    # Strip whitespace and normalize to lowercase
+    clean_name = name.strip().lower()
+    # Remove 'r/' or '/r/' prefixes using regex
+    clean_name = re.sub(r'^/?r/', '', clean_name)
+    # Ensure no trailing slashes remain
+    return clean_name.strip('/')
