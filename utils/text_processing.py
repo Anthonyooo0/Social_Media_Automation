@@ -244,3 +244,19 @@ def normalize_subreddit_name(name):
     elif clean_name.startswith('r/'):
         clean_name = clean_name[2:]
     return clean_name.strip('/')
+
+
+# AI Improvement (2026-03-05)
+# Add a basic lexicon-based sentiment analysis utility.
+
+
+def estimate_sentiment_score(text):
+    """Estimates sentiment score (-1.0 to 1.0) based on keyword matching."""
+    pos_words = {'good', 'great', 'best', 'amazing', 'love', 'awesome', 'excellent', 'positive', 'cool', 'helpful'}
+    neg_words = {'bad', 'worst', 'terrible', 'hate', 'awful', 'poor', 'negative', 'useless', 'wrong', 'boring'}
+    # Extract words while ignoring punctuation
+    words = re.findall(r'\w+', text.lower())
+    if not words:
+        return 0.0
+    sentiment_sum = sum((1 if word in pos_words else -1 if word in neg_words else 0) for word in words)
+    return round(sentiment_sum / len(words), 4)
