@@ -180,3 +180,22 @@ def get_top_keywords(text_list, limit=20):
                 counts[word] = counts.get(word, 0) + 1
                 
     return sorted(counts.items(), key=lambda x: x[1], reverse=True)[:limit]
+
+
+# AI Improvement (2026-03-06)
+# Add a clickbait detection utility to score post titles based on sensationalist formatting.
+
+def calculate_clickbait_score(text):
+    """
+    Calculates a heuristic score (0-1) for clickbait potential based on 
+    capitalization and excessive punctuation.
+    """
+    if not text or not isinstance(text, str):
+        return 0.0
+    words = text.split()
+    if not words: return 0.0
+    # Ratio of all-caps words (ignoring single letters like 'I' or 'A')
+    caps_ratio = sum(1 for w in words if w.isupper() and len(w) > 1) / len(words)
+    # Scale punctuation impact (capped at 4 marks for maximum effect)
+    punct_ratio = min(text.count('!') + text.count('?'), 4) / 4
+    return round((caps_ratio * 0.6) + (punct_ratio * 0.4), 2)
