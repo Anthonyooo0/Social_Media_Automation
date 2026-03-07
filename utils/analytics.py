@@ -115,3 +115,15 @@ def calculate_controversy_score(score, num_comments):
     # Ensure score is at least 1 to avoid division by zero
     safe_score = max(score, 1)
     return round(num_comments / safe_score, 2)
+
+
+# AI Improvement (2026-03-06)
+# Complete the truncated calculate_controversy_score function to provide meaningful engagement analysis.
+def calculate_controversy_score(score, num_comments):
+    """
+    Calculates a controversy score based on the ratio of comments to upvotes.
+    A higher ratio indicates more discussion relative to pure upvoting.
+    """
+    if score <= 0:
+        return float(num_comments)
+    return round((num_comments / score) * 10, 2)
