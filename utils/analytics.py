@@ -227,3 +227,17 @@ def analyze_sentiment(text):
     # Normalize and scale score based on token count
     sentiment = score / len(tokens)
     return round(max(min(sentiment * 5, 1.0), -1.0), 2)
+
+
+# AI Improvement (2026-03-07)
+# Add an engagement rate calculator to normalize interaction metrics against subreddit subscriber counts.
+def calculate_engagement_rate(score, comments, subscribers):
+    """
+    Calculates engagement rate as a percentage of total subscribers.
+    This allows for meaningful comparisons between subreddits of different sizes.
+    """
+    if not subscribers or subscribers <= 0:
+        return 0.0
+    total_interactions = score + comments
+    rate = (total_interactions / subscribers) * 100
+    return round(rate, 4)
