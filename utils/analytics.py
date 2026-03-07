@@ -127,3 +127,18 @@ def calculate_controversy_score(score, num_comments):
     if score <= 0:
         return float(num_comments)
     return round((num_comments / score) * 10, 2)
+
+
+# AI Improvement (2026-03-06)
+# Add a utility to bin post timestamps into hourly distributions for trend analysis.
+def bin_posts_by_hour(timestamps):
+    """
+    Groups a list of UTC timestamps into 24-hour bins.
+    Returns a dictionary where keys are hours (0-23) and values are post counts.
+    """
+    distribution = {hour: 0 for hour in range(24)}
+    for ts in timestamps:
+        # Convert UTC timestamp to structured time and extract the hour
+        hour = time.gmtime(ts).tm_hour
+        distribution[hour] += 1
+    return distribution
