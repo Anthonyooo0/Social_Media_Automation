@@ -142,3 +142,20 @@ def bin_posts_by_hour(timestamps):
         hour = time.gmtime(ts).tm_hour
         distribution[hour] += 1
     return distribution
+
+
+# AI Improvement (2026-03-06)
+# Add a 'hot score' algorithm to rank posts by balancing engagement and recency.
+def calculate_hot_score(score, num_comments, created_utc):
+    """
+    Calculates a ranking score that balances engagement and recency.
+    Helps identify posts that are currently trending.
+    """
+    current_time = time.time()
+    age_hours = max(current_time - created_utc, 0) / 3600
+    # Gravity factor ensures older posts lose rank over time
+    gravity = 1.8
+    # Weight comments more heavily as they indicate active discussion
+    weighted_engagement = score + (num_comments * 2)
+    # The +2 offset prevents zero division and dampens the score for very new posts
+    return round(weighted_engagement / (age_hours + 2) ** gravity, 4)
