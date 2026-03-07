@@ -241,3 +241,20 @@ def calculate_engagement_rate(score, comments, subscribers):
     total_interactions = score + comments
     rate = (total_interactions / subscribers) * 100
     return round(rate, 4)
+
+
+# AI Improvement (2026-03-07)
+# Add a median engagement calculator to provide a more robust metric for typical post performance.
+def calculate_median_engagement(metrics):
+    """
+    Calculates the median of engagement metrics (scores or comments).
+    This is more resilient to viral outliers than a simple average.
+    """
+    if not metrics:
+        return 0
+    sorted_metrics = sorted(metrics)
+    n = len(sorted_metrics)
+    mid = n // 2
+    if n % 2 == 0:
+        return (sorted_metrics[mid - 1] + sorted_metrics[mid]) / 2
+    return sorted_metrics[mid]

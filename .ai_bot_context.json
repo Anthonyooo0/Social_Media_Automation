@@ -575,8 +575,14 @@
       "description": "Add a rule-based sentiment analysis utility to score post titles/content.",
       "type": "feature",
       "file": "utils/analytics.py"
+    },
+    {
+      "date": "2026-03-07T17:47:16.332597",
+      "description": "Add an engagement rate calculator to normalize interaction metrics against subreddit subscriber counts.",
+      "type": "feature",
+      "file": "utils/analytics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-06T20:30:28.008336"
+  "last_run": "2026-03-07T17:47:16.332623"
 }
