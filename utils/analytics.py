@@ -159,3 +159,24 @@ def calculate_hot_score(score, num_comments, created_utc):
     weighted_engagement = score + (num_comments * 2)
     # The +2 offset prevents zero division and dampens the score for very new posts
     return round(weighted_engagement / (age_hours + 2) ** gravity, 4)
+
+
+# AI Improvement (2026-03-06)
+# Add a keyword extraction utility with stop-word filtering to improve word frequency analysis.
+def get_top_keywords(text_list, limit=20):
+    """
+    Processes a list of text strings to find the most frequent meaningful keywords.
+    Filters out common English stop words and non-alphanumeric characters.
+    """
+    stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'if', 'then', 'else', 'when', 'at', 'from', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'of', 'in', 'on', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'this', 'that', 'it', 'its', 'they', 'them', 'their', 'my', 'your', 'our', 'how', 'what', 'which', 'who', 'whom', 'can', 'not', 'just', 'more', 'all', 'any'}
+    
+    counts = {}
+    for text in text_list:
+        if not text: continue
+        # Remove punctuation and lowercase
+        clean_text = ''.join(c if c.isalnum() or c.isspace() else ' ' for c in text.lower())
+        for word in clean_text.split():
+            if word not in stop_words and len(word) > 2:
+                counts[word] = counts.get(word, 0) + 1
+                
+    return sorted(counts.items(), key=lambda x: x[1], reverse=True)[:limit]
