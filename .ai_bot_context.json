@@ -563,8 +563,14 @@
       "description": "Add a keyword extraction utility with stop-word filtering to improve word frequency analysis.",
       "type": "feature",
       "file": "utils/analytics.py"
+    },
+    {
+      "date": "2026-03-06T20:30:03.407928",
+      "description": "Add a clickbait detection utility to score post titles based on sensationalist formatting.",
+      "type": "feature",
+      "file": "utils/analytics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-06T20:29:24.863038"
+  "last_run": "2026-03-06T20:30:03.407949"
 }

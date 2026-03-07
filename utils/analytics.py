@@ -199,3 +199,31 @@ def calculate_clickbait_score(text):
     # Scale punctuation impact (capped at 4 marks for maximum effect)
     punct_ratio = min(text.count('!') + text.count('?'), 4) / 4
     return round((caps_ratio * 0.6) + (punct_ratio * 0.4), 2)
+
+
+# AI Improvement (2026-03-06)
+# Add a rule-based sentiment analysis utility to score post titles/content.
+
+def analyze_sentiment(text):
+    """
+    Analyzes the sentiment of a given text using a basic word-matching approach.
+    Returns a score between -1.0 (very negative) and 1.0 (very positive).
+    """
+    pos_words = {'amazing', 'great', 'excellent', 'good', 'positive', 'win', 'best', 'love', 'success', 'awesome'}
+    neg_words = {'awful', 'terrible', 'bad', 'negative', 'loss', 'worst', 'hate', 'failure', 'horrible', 'poor'}
+    
+    tokens = text.lower().split()
+    if not tokens:
+        return 0.0
+        
+    score = 0
+    for word in tokens:
+        clean_word = ''.join(c for c in word if c.isalnum())
+        if clean_word in pos_words:
+            score += 1
+        elif clean_word in neg_words:
+            score -= 1
+    
+    # Normalize and scale score based on token count
+    sentiment = score / len(tokens)
+    return round(max(min(sentiment * 5, 1.0), -1.0), 2)
