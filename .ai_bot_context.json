@@ -581,8 +581,14 @@
       "description": "Add an engagement rate calculator to normalize interaction metrics against subreddit subscriber counts.",
       "type": "feature",
       "file": "utils/analytics.py"
+    },
+    {
+      "date": "2026-03-07T17:48:05.036093",
+      "description": "Add a median engagement calculator to provide a more robust metric for typical post performance.",
+      "type": "feature",
+      "file": "utils/analytics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-07T17:47:16.332623"
+  "last_run": "2026-03-07T17:48:05.036131"
 }
