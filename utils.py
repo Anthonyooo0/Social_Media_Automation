@@ -353,3 +353,22 @@ def get_sentiment_label(text):
     if score > 0: return 'Positive'
     if score < 0: return 'Negative'
     return 'Neutral'
+
+
+# AI Improvement (2026-03-09)
+# Add a keyword extraction utility with stopword filtering to improve word frequency analysis.
+def get_top_keywords(titles, limit=20):
+    """Extracts the most frequent meaningful keywords from a list of titles, filtering out stopwords."""
+    import re
+    from collections import Counter
+    
+    stopwords = {'the', 'and', 'to', 'of', 'in', 'is', 'it', 'that', 'for', 'on', 'was', 'with', 'as', 'are', 'by', 'be', 'this', 'at', 'or', 'an', 'have', 'from', 'but', 'not', 'your', 'all', 'my', 'we', 'so', 'if', 'me', 'they', 'their', 'just', 'more', 'can', 'who', 'has', 'what', 'about', 'how', 'when', 'where'}
+    
+    # Combine titles and extract alphanumeric words
+    all_text = ' '.join(titles).lower()
+    words = re.findall(r'\w+', all_text)
+    
+    # Filter stopwords and short words
+    filtered_words = [w for w in words if w not in stopwords and len(w) > 2]
+    
+    return Counter(filtered_words).most_common(limit)
