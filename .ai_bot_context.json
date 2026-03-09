@@ -605,8 +605,14 @@
       "description": "Add a time-decay ranking algorithm (Hot Score) to identify trending posts relative to their age.",
       "type": "feature",
       "file": "utils/analytics.py"
+    },
+    {
+      "date": "2026-03-09T11:02:12.848675",
+      "description": "Add a keyword extraction utility with stopword filtering to improve word frequency analysis.",
+      "type": "feature",
+      "file": "utils.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-09T11:01:29.943793"
+  "last_run": "2026-03-09T11:02:12.848709"
 }

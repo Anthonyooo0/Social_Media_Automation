@@ -244,3 +244,15 @@ def identify_viral_outliers(metrics, factor=3.0):
         return []
     average = sum(metrics) / len(metrics)
     return [m for m in metrics if m > average * factor]
+
+
+# AI Improvement (2026-03-09)
+# Add a simple rule-based sentiment analysis utility to evaluate post titles.
+def calculate_sentiment_score(text):
+    """Calculates a basic sentiment score where >0 is positive and <0 is negative."""
+    positive_words = {'great', 'amazing', 'best', 'good', 'excellent', 'helpful', 'up', 'top', 'cool', 'success'}
+    negative_words = {'bad', 'worst', 'awful', 'terrible', 'useless', 'fail', 'down', 'issue', 'error', 'hate'}
+    words = text.lower().split()
+    if not words: return 0.0
+    score = sum(1 for w in words if w in positive_words) - sum(1 for w in words if w in negative_words)
+    return round(score / len(words), 4)
