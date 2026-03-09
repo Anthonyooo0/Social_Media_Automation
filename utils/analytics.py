@@ -258,3 +258,24 @@ def calculate_median_engagement(metrics):
     if n % 2 == 0:
         return (sorted_metrics[mid - 1] + sorted_metrics[mid]) / 2
     return sorted_metrics[mid]
+
+
+# AI Improvement (2026-03-09)
+# Add a time-decay ranking algorithm (Hot Score) to identify trending posts relative to their age.
+import time
+from math import log10
+
+def calculate_hot_score(score, created_utc):
+    """
+    Calculates a ranking score that balances total engagement with post age.
+    This ensures 'trending' content appears above older, static high-score posts.
+    """
+    # Logarithmic scale for score to reduce the impact of outliers
+    order = log10(max(abs(score), 1))
+    
+    # Time component (decay factor based on seconds since a fixed epoch)
+    # Epoch: 2025-01-01
+    seconds = created_utc - 1735689600
+    
+    # Combine magnitude and time (45000s = 12.5 hours per unit of magnitude)
+    return round(order + (seconds / 45000), 7)

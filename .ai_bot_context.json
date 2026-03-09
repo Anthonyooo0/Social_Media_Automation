@@ -593,8 +593,14 @@
       "description": "Add a controversy index utility that measures the ratio of comments to score.",
       "type": "feature",
       "file": "utils/metrics.py"
+    },
+    {
+      "date": "2026-03-09T11:00:57.050176",
+      "description": "Add an engagement velocity utility to calculate score growth per hour.",
+      "type": "feature",
+      "file": "utils/metrics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-09T11:00:32.507903"
+  "last_run": "2026-03-09T11:00:57.050202"
 }
