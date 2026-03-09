@@ -7,3 +7,12 @@ def calculate_controversy_index(num_comments, score):
     if score < 1:
         return float(num_comments)
     return round((num_comments / score), 4)
+
+
+# AI Improvement (2026-03-09)
+# Add an engagement velocity utility to calculate score growth per hour.
+def calculate_engagement_velocity(score, created_utc):
+    import time
+    # Calculate age in hours, using a minimum of 1 hour to prevent extreme values for brand new posts
+    age_in_hours = (time.time() - created_utc) / 3600
+    return round(score / max(age_in_hours, 1.0), 2)
