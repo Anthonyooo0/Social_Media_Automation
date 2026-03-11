@@ -641,8 +641,14 @@
       "description": "Add a content classification utility to categorize posts into types like Questions, Links, or Media.",
       "type": "feature",
       "file": "utils/content_classifier.py"
+    },
+    {
+      "date": "2026-03-10T20:45:41.532575",
+      "description": "Add a text processing utility to filter common stop words from word frequency analysis.",
+      "type": "feature",
+      "file": "utils/text_processing.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-10T20:45:02.413806"
+  "last_run": "2026-03-10T20:45:41.532605"
 }
