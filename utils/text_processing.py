@@ -260,3 +260,21 @@ def estimate_sentiment_score(text):
         return 0.0
     sentiment_sum = sum((1 if word in pos_words else -1 if word in neg_words else 0) for word in words)
     return round(sentiment_sum / len(words), 4)
+
+
+# AI Improvement (2026-03-10)
+# Add a text processing utility to filter common stop words from word frequency analysis.
+def filter_common_words(text_list, custom_stopwords=None):
+    """
+    Filters out common English stop words to improve word frequency analysis.
+    """
+    stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'with', 'is', 'are', 'was', 'were', 'of', 'it', 'that', 'this', 'my', 'your', 'about', 'will', 'can', 'not', 'from', 'as', 'up', 'out', 'so', 'be', 'has'}
+    if custom_stopwords:
+        stop_words.update(custom_stopwords)
+    
+    filtered_words = []
+    for text in text_list:
+        # Normalize and filter alphanumeric tokens
+        words = text.lower().split()
+        filtered_words.extend([w for w in words if w.isalnum() and w not in stop_words])
+    return filtered_words

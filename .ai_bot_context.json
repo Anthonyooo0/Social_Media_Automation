@@ -635,8 +635,14 @@
       "description": "Add a lexical diversity utility to measure the richness and variety of vocabulary in post titles.",
       "type": "feature",
       "file": "utils/text_analysis.py"
+    },
+    {
+      "date": "2026-03-10T20:45:02.413727",
+      "description": "Add a content classification utility to categorize posts into types like Questions, Links, or Media.",
+      "type": "feature",
+      "file": "utils/content_classifier.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-10T20:44:23.596874"
+  "last_run": "2026-03-10T20:45:02.413806"
 }
