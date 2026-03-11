@@ -623,8 +623,14 @@
       "description": "Add a utility to track user engagement and contribution concentration.",
       "type": "feature",
       "file": "utils/user_analytics.py"
+    },
+    {
+      "date": "2026-03-09T11:03:53.671037",
+      "description": "Add a normalization utility to calculate engagement per thousand subscribers.",
+      "type": "feature",
+      "file": "utils/metrics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-09T11:03:30.981014"
+  "last_run": "2026-03-09T11:03:53.671060"
 }
