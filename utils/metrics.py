@@ -32,3 +32,19 @@ def calculate_normalized_engagement(score, comments, subscriber_count):
     total_engagement = score + (comments * 2)
     engagement_rate = (total_engagement / subscriber_count) * 1000
     return round(engagement_rate, 4)
+
+
+# AI Improvement (2026-03-10)
+# Add a discussion intensity utility to measure comment frequency over time.
+
+
+# AI Improvement (2026-03-11)
+# Add a discussion intensity utility to measure comment frequency over time.
+def calculate_discussion_intensity(num_comments, created_utc):
+    """
+    Calculates the rate of comments per hour since the post was created.
+    High intensity suggests an active, ongoing discussion.
+    """
+    import time
+    age_in_hours = (time.time() - created_utc) / 3600
+    return round(num_comments / max(age_in_hours, 1.0), 2)
