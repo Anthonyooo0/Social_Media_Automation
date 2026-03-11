@@ -48,3 +48,24 @@ def calculate_discussion_intensity(num_comments, created_utc):
     import time
     age_in_hours = (time.time() - created_utc) / 3600
     return round(num_comments / max(age_in_hours, 1.0), 2)
+
+
+# AI Improvement (2026-03-10)
+# Add an engagement outlier detection utility to identify viral posts using the Interquartile Range (IQR) method.
+
+
+def identify_engagement_outliers(scores):
+    """
+    Identifies scores that are statistical outliers using the Interquartile Range (IQR) method.
+    Useful for highlighting viral posts that significantly outperform the average.
+    """
+    if len(scores) < 4:
+        return []
+    
+    sorted_scores = sorted(scores)
+    q1 = sorted_scores[len(sorted_scores) // 4]
+    q3 = sorted_scores[(len(sorted_scores) * 3) // 4]
+    iqr = q3 - q1
+    upper_bound = q3 + (1.5 * iqr)
+    
+    return [score for score in scores if score > upper_bound]
