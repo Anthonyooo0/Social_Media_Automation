@@ -69,3 +69,30 @@ def identify_engagement_outliers(scores):
     upper_bound = q3 + (1.5 * iqr)
     
     return [score for score in scores if score > upper_bound]
+
+
+# AI Improvement (2026-03-10)
+# Add a Gini coefficient utility to measure engagement inequality within a subreddit.
+
+
+# AI Improvement (2026-03-10)
+# Calculate the Gini coefficient to measure engagement distribution inequality.
+def calculate_engagement_concentration(scores):
+    """
+    Calculates the Gini coefficient for post scores.
+    Values close to 0 indicate even engagement, while values close to 1 indicate a few posts dominate.
+    """
+    if not scores or len(scores) < 2:
+        return 0.0
+    
+    sorted_scores = sorted(scores)
+    n = len(scores)
+    sum_of_scores = sum(sorted_scores)
+    
+    if sum_of_scores == 0:
+        return 0.0
+        
+    # Calculate Gini coefficient using the simplified rank-based formula
+    index_sum = sum((i + 1) * score for i, score in enumerate(sorted_scores))
+    gini = (2 * index_sum) / (n * sum_of_scores) - (n + 1) / n
+    return round(max(0, gini), 3)
