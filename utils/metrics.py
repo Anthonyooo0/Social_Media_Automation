@@ -96,3 +96,14 @@ def calculate_engagement_concentration(scores):
     index_sum = sum((i + 1) * score for i, score in enumerate(sorted_scores))
     gini = (2 * index_sum) / (n * sum_of_scores) - (n + 1) / n
     return round(max(0, gini), 3)
+
+
+# AI Improvement (2026-03-11)
+# Add an impact score utility to calculate a weighted engagement metric.
+# AI Improvement (2026-03-12)
+def calculate_impact_score(score, num_comments, score_weight=1.0, comment_weight=2.0):
+    """
+    Calculates a weighted impact score where comments are weighted more heavily
+    than upvotes to reflect deeper engagement.
+    """
+    return round((score * score_weight) + (num_comments * comment_weight), 2)
