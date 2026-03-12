@@ -42,3 +42,20 @@ def extract_top_bigrams(texts, limit=10):
         bigrams.extend([f"{words[i]} {words[i+1]}" for i in range(len(words) - 1)])
     
     return Counter(bigrams).most_common(limit)
+
+
+# AI Improvement (2026-03-11)
+# Add a utility to filter out common stop words for more meaningful word frequency analysis.
+
+
+def filter_common_words(text):
+    """
+    Filters out common stop words from the input text to help identify meaningful trends.
+    """
+    if not text:
+        return []
+    
+    stop_words = {"the", "and", "this", "that", "with", "from", "for", "was", "were", "about", "will", "can", "not", "your", "are", "have", "been", "has", "their", "there"}
+    # Extract words of 3+ characters and filter stop words
+    words = re.findall(r"\b\w{3,}\b", text.lower())
+    return [w for w in words if w not in stop_words]
