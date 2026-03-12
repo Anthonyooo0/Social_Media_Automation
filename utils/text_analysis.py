@@ -19,3 +19,26 @@ def calculate_lexical_diversity(texts):
         return 0.0
         
     return round(len(set(words)) / len(words), 4)
+
+
+# AI Improvement (2026-03-11)
+# Add a bigram extraction utility to identify common two-word phrases for better topic context.
+
+# AI Improvement (2026-03-12)
+def extract_top_bigrams(texts, limit=10):
+    """
+    Extracts the most frequent two-word sequences (bigrams) from titles.
+    Helps identify specific topics like 'machine learning' vs just 'learning'.
+    """
+    from collections import Counter
+    if not texts:
+        return []
+    
+    bigrams = []
+    for text in texts:
+        # Clean and tokenize into alphanumeric words
+        words = re.findall(r"\w+", text.lower())
+        # Generate pairs of consecutive words
+        bigrams.extend([f"{words[i]} {words[i+1]}" for i in range(len(words) - 1)])
+    
+    return Counter(bigrams).most_common(limit)

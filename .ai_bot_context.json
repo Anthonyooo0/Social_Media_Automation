@@ -671,8 +671,14 @@
       "description": "Add a utility to validate subreddit names against Reddit's official naming rules",
       "type": "feature",
       "file": "utils/validators.py"
+    },
+    {
+      "date": "2026-03-10T20:48:18.293263",
+      "description": "Add a Gini coefficient utility to measure engagement inequality within a subreddit.",
+      "type": "feature",
+      "file": "utils/metrics.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-10T20:47:47.214521"
+  "last_run": "2026-03-10T20:48:18.293283"
 }
