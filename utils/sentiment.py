@@ -20,3 +20,11 @@ def calculate_sentiment_score(text):
             score -= 1
     
     return round(score / len(words), 4)
+
+
+# AI Improvement (2026-03-11)
+# Complete the truncated sentiment analysis function to prevent syntax errors.
+        elif clean_word in neg_words:
+            score -= 1
+
+    return round(score / len(words), 4)

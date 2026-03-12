@@ -677,8 +677,14 @@
       "description": "Add a Gini coefficient utility to measure engagement inequality within a subreddit.",
       "type": "feature",
       "file": "utils/metrics.py"
+    },
+    {
+      "date": "2026-03-11T22:00:12.264395",
+      "description": "Add a bigram extraction utility to identify common two-word phrases for better topic context.",
+      "type": "feature",
+      "file": "utils/text_analysis.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-10T20:48:18.293283"
+  "last_run": "2026-03-11T22:00:12.264421"
 }
