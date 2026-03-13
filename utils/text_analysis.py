@@ -142,3 +142,24 @@ def calculate_title_length_stats(titles):
         "min_length": min(counts),
         "max_length": max(counts)
     }
+
+
+# AI Improvement (2026-03-13)
+# Implement bigram extraction to identify common two-word phrases in post titles.
+def extract_top_bigrams(texts, top_n=10):
+    """
+    Identifies the most frequent two-word phrases (bigrams) in the provided text list.
+    Helps capture meaningful multi-word concepts like 'machine learning'.
+    """
+    from collections import Counter
+    if not texts:
+        return []
+    
+    all_bigrams = []
+    for text in texts:
+        words = re.findall(r"\w+", text.lower())
+        if len(words) >= 2:
+            pairs = [" ".join(words[i:i+2]) for i in range(len(words)-1)]
+            all_bigrams.extend(pairs)
+            
+    return Counter(all_bigrams).most_common(top_n)
