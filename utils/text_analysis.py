@@ -97,3 +97,27 @@ def extract_top_bigrams(texts, limit=10):
             bigram_counts[f"{words[i]} {words[i+1]}"] += 1
     
     return bigram_counts.most_common(limit)
+
+
+# AI Improvement (2026-03-13)
+# Add a keyword extraction utility with stopword filtering to identify the most frequent meaningful topics in post titles.
+def get_most_frequent_keywords(titles, limit=20):
+    """
+    Extracts the most frequent meaningful keywords from post titles.
+    Filters out common stop words and short particles to highlight actual topics.
+    """
+    from collections import Counter
+    
+    if not titles:
+        return []
+
+    # Common filler words to filter out noise
+    stop_words = {'the', 'and', 'for', 'this', 'that', 'with', 'from', 'how', 'what', 'your', 'about', 'just', 'out', 'new', 'not', 'can', 'was', 'are', 'has', 'but', 'all', 'will'}
+    
+    # Combine all titles and extract words of 3+ characters
+    text = " ".join(titles).lower()
+    words = re.findall(r'\\b[a-z]{3,}\\b', text)
+    
+    # Filter stopwords and count occurrences
+    meaningful_words = [w for w in words if w not in stop_words]
+    return Counter(meaningful_words).most_common(limit)
