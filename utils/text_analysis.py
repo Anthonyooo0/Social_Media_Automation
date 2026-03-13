@@ -121,3 +121,24 @@ def get_most_frequent_keywords(titles, limit=20):
     # Filter stopwords and count occurrences
     meaningful_words = [w for w in words if w not in stop_words]
     return Counter(meaningful_words).most_common(limit)
+
+
+# AI Improvement (2026-03-13)
+# Add a utility to calculate title length statistics including average, minimum, and maximum word counts.
+def calculate_title_length_stats(titles):
+    """
+    Calculates the average, minimum, and maximum word count of titles.
+    Helps identify the preferred content depth for the subreddit.
+    """
+    if not titles:
+        return {"avg_length": 0, "min_length": 0, "max_length": 0}
+    
+    counts = [len(t.split()) for t in titles if t]
+    if not counts:
+        return {"avg_length": 0, "min_length": 0, "max_length": 0}
+        
+    return {
+        "avg_length": round(sum(counts) / len(counts), 2),
+        "min_length": min(counts),
+        "max_length": max(counts)
+    }
