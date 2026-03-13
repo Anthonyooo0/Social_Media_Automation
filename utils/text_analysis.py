@@ -59,3 +59,22 @@ def filter_common_words(text):
     # Extract words of 3+ characters and filter stop words
     words = re.findall(r"\b\w{3,}\b", text.lower())
     return [w for w in words if w not in stop_words]
+
+
+# AI Improvement (2026-03-13)
+# Add a domain extraction utility to identify top external content sources.
+
+def extract_top_domains(urls, limit=5):
+    """
+    Identifies the most common source domains from a list of external links.
+    """
+    from collections import Counter
+    domains = []
+    for url in urls:
+        if isinstance(url, str):
+            # Extract domain using regex (e.g., https://github.com/user -> github.com)
+            match = re.search(r"https?://(?:www\.)?([^/:\s]+)", url)
+            if match:
+                domains.append(match.group(1).lower())
+    
+    return Counter(domains).most_common(limit)
