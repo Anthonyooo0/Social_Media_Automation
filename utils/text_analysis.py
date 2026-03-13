@@ -78,3 +78,22 @@ def extract_top_domains(urls, limit=5):
                 domains.append(match.group(1).lower())
     
     return Counter(domains).most_common(limit)
+
+
+# AI Improvement (2026-03-13)
+# Implement bigram extraction to identify common two-word phrases for better topic context.
+def extract_top_bigrams(texts, limit=10):
+    """
+    Identifies the most common two-word phrases (bigrams) to provide better context than single words.
+    """
+    from collections import Counter
+    if not texts:
+        return []
+    
+    bigram_counts = Counter()
+    for text in texts:
+        words = re.findall(r"\w+", text.lower())
+        for i in range(len(words) - 1):
+            bigram_counts[f"{words[i]} {words[i+1]}"] += 1
+    
+    return bigram_counts.most_common(limit)
