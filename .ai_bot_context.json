@@ -749,8 +749,14 @@
       "description": "Add a weighted impact score utility to provide a more holistic measure of post performance by balancing popularity, discussion volume, and growth speed.",
       "type": "feature",
       "file": "utils/metrics.py"
+    },
+    {
+      "date": "2026-03-13T00:08:08.044249",
+      "description": "Implement bigram extraction to identify common two-word phrases in post titles.",
+      "type": "feature",
+      "file": "utils/text_analysis.py"
     }
   ],
   "areas_to_improve": [],
-  "last_run": "2026-03-13T00:07:28.631093"
+  "last_run": "2026-03-13T00:08:08.044271"
 }

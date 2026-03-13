@@ -152,3 +152,17 @@ def calculate_impact_score(score, num_comments, velocity):
     # Weights: 40% Score, 40% Comments, 20% Velocity
     impact = (score * 0.4) + (num_comments * 0.4) + (velocity * 0.2)
     return round(impact, 2)
+
+
+# AI Improvement (2026-03-13)
+# Add a statistical Z-score utility to identify engagement outliers.
+
+# AI Improvement (2026-03-14)
+def calculate_engagement_z_score(score, mean, std_dev):
+    """
+    Calculates the Z-score to identify statistical outliers in engagement.
+    A score above 2.0 generally indicates a post has gone viral relative to its community.
+    """
+    if std_dev == 0:
+        return 0.0
+    return round((score - mean) / std_dev, 2)
