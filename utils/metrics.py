@@ -137,3 +137,18 @@ def identify_optimal_posting_hour(post_data):
     # Calculate average score per hour and return the hour with the maximum average
     averages = {hour: (sum(scores) / len(scores)) for hour, scores in hour_engagement.items()}
     return max(averages, key=averages.get)
+
+
+# AI Improvement (2026-03-13)
+# Add a weighted impact score utility to provide a more holistic measure of post performance by balancing popularity, discussion volume, and growth speed.
+
+
+# AI Improvement (2026-03-14)
+def calculate_impact_score(score, num_comments, velocity):
+    """
+    Calculates a weighted impact score to identify high-value posts.
+    This provides a single metric that balances popularity, discussion volume, and growth speed.
+    """
+    # Weights: 40% Score, 40% Comments, 20% Velocity
+    impact = (score * 0.4) + (num_comments * 0.4) + (velocity * 0.2)
+    return round(impact, 2)
