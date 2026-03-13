@@ -107,3 +107,33 @@ def calculate_impact_score(score, num_comments, score_weight=1.0, comment_weight
     than upvotes to reflect deeper engagement.
     """
     return round((score * score_weight) + (num_comments * comment_weight), 2)
+
+
+# AI Improvement (2026-03-13)
+# Add a utility to identify the hour of the day with the highest average engagement.
+
+
+# AI Improvement (2026-03-12)
+def identify_optimal_posting_hour(post_data):
+    """
+    Analyzes post timing and scores to determine which hour of the day 
+    yields the highest average engagement.
+    :param post_data: List of tuples [(created_utc, score), ...]
+    """
+    from datetime import datetime
+    if not post_data:
+        return None
+    
+    hour_engagement = {}
+    for timestamp, score in post_data:
+        hour = datetime.fromtimestamp(timestamp).hour
+        if hour not in hour_engagement:
+            hour_engagement[hour] = []
+        hour_engagement[hour].append(score)
+    
+    if not hour_engagement:
+        return None
+
+    # Calculate average score per hour and return the hour with the maximum average
+    averages = {hour: (sum(scores) / len(scores)) for hour, scores in hour_engagement.items()}
+    return max(averages, key=averages.get)
