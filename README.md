@@ -1,4 +1,4 @@
-# 📊 Social Media Analytics
+# 📊 Social Media Analytic
 
 **Analyze Reddit posts, trends, and engagement metrics in real-time!**
 
